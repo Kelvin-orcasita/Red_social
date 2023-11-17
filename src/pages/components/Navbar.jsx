@@ -82,7 +82,7 @@ export function Navbar({ user }) {
 							<Link className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" to='/register'>Sign up</Link>
 						</div>
 						:
-						<div>
+						<div className="hidden lg:inline-block">
 							<img className="w-10 h-10 rounded-full" src={user.photoURL == null ? '/public/icons/perfil.png' : user.photoURL} />
 							<button className="text-white" onClick={() => { handleLogout() }}>Cerrar</button>
 						</div>
