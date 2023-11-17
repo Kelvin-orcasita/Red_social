@@ -1,17 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { auth } from "../firebase/register.js";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "./components/Navbar.jsx";
 
 export function HomePage() {
   const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState(null)
+
   useEffect(() => {
     const user = auth.currentUser;
     if (user) {
+
       console.log(user);
+      setCurrentUser(user)
     } else {
       navigate('/');
-      console.log('No hay usuario');
     }
   }, []);
 
@@ -20,7 +23,7 @@ export function HomePage() {
     <>
       <section>
         <article>
-          <Navbar />
+          <Navbar user={currentUser} />
         </article>
       </section>
 

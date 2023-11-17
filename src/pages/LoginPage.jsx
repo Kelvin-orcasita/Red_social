@@ -1,6 +1,7 @@
-import { LoginUser, auth  } from "../firebase/login.js";
+import { LoginUser } from "../firebase/login.js";
 import { useRef, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { Navbar } from "./components/Navbar.jsx";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 const provider = new GoogleAuthProvider();
 
@@ -9,6 +10,7 @@ export function LoginPage() {
     const form = useRef(null)
     const [messageError, serMessageError] = useState('')
     const navigate = useNavigate()
+    const auth = getAuth();
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -16,8 +18,9 @@ export function LoginPage() {
     if(!form.current.username.value) return serMessageError('Username is required') 
     if(!form.current.password.value) return serMessageError('Password is required') 
     LoginUser(form.current.username.value, form.current.password.value)
-    if (auth.currentUser) {
-      return navigate('/home')
+  console.log(auth.currentUser);
+    if (auth.currentUser !== null) {
+        return navigate('/')
     }
     form.current.reset()
     serMessageError('')
@@ -33,6 +36,7 @@ export function LoginPage() {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
+        navigate('/')
         // IdP data available using getAdditionalUserInfo(result)
         // ...
       }).catch((error) => {
@@ -48,6 +52,9 @@ export function LoginPage() {
   }
     return (
       <>
+ 
+          <Navbar />
+ 
         <section>
         <article>
           <div className="flex justify-center h-screen items-center bg-slate-200">

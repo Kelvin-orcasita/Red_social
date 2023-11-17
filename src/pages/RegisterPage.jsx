@@ -1,11 +1,11 @@
 import { registerUser } from "../firebase/register.js";
 import { useRef, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { Navbar } from "./components/Navbar.jsx";
 
 export function RegisterPage() {
   const form = useRef(null)
   const [messageError, serMessageError] = useState('')
-  const auth = getAuth();
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -23,8 +23,16 @@ export function RegisterPage() {
     return serMessageError('password do not match')
   }
 
+  
+
   return (
     <>
+        <section>
+          <article>
+            <Navbar />
+          </article>
+        </section>
+
       <section>
         <article>
           <div className='flex justify-center h-screen items-center bg-slate-200'>

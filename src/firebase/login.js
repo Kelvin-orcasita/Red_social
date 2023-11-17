@@ -19,8 +19,6 @@ export const LoginUser = async (emailUser, passwordUser) => {
 
       if (errorCode === "auth/invalid-login-credentials") {
          alert('Credenciales incorrectas');
-         return location.reload()
-
       }
   }
 
