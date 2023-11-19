@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
-import { useNavigate, useLocation } from "react-router-dom";
-
-
+import { Dropdowns } from './Dropdowns';
 
 export function Navbar({ user }) {
 	const [hiddenBurger, setHiddenBurger] = useState('hidden')
@@ -13,7 +11,6 @@ export function Navbar({ user }) {
 	useEffect(() => {
 		setHiddenBurger('hidden')
 
-		console.log(location.pathname)
 	}, []);
 
 	function handleCloseBurger() {
@@ -37,7 +34,7 @@ export function Navbar({ user }) {
 
 	return (
 		<>
-			<nav className="relative px-4 py-4 flex justify-between items-center bg-slate-950">
+			<nav className="relative px-4 py-6 flex justify-between items-center bg-slate-950">
 				<Link className="text-3xl font-bold leading-none text-white" to='/'>
 					Logo
 				</Link>
@@ -52,7 +49,7 @@ export function Navbar({ user }) {
 				<ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2  lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
 
 					{
-						user !== null && location.pathname !== '/login' && location.pathname !== '/register' ?
+						user!== null?
 							<>
 								<li><a className="text-sm text-gray-400 hover:text-gray-500" href="#">Favorities</a></li>
 								<li className="text-gray-300">
@@ -60,19 +57,19 @@ export function Navbar({ user }) {
 										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
 									</svg>
 								</li>
+								<li><Link className="text-sm text-gray-400 hover:text-gray-500" to='/'>Home</Link></li>
+								<li className="text-gray-300">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" className="w-4 h-4 current-fill" viewBox="0 0 24 24">
+										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+									</svg>
+								</li>
+								<li><Link className="text-sm text-gray-400 hover:text-gray-500" to='/account'>Account</Link></li>
+								<li className="text-gray-300"></li>
 							</>
 							:
 							<></>
 					}
 
-
-					<li><Link className="text-sm text-blue-600 font-bold" to='/'>Home</Link></li>
-					<li className="text-gray-300">
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" className="w-4 h-4 current-fill" viewBox="0 0 24 24">
-							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-						</svg>
-					</li>
-					<li><a className="text-sm text-gray-400 hover:text-gray-500" href="#">Profile</a></li>
 				</ul>
 
 				{
@@ -82,13 +79,12 @@ export function Navbar({ user }) {
 							<Link className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" to='/register'>Sign up</Link>
 						</div>
 						:
-						<div className="hidden lg:inline-block">
-							<img className="w-10 h-10 rounded-full" src={user.photoURL == null ? '/public/icons/perfil.png' : user.photoURL} />
-							<button className="text-white" onClick={() => { handleLogout() }}>Cerrar</button>
+						<div>
+							<Dropdowns />
 						</div>
 				}
-
 			</nav>
+
 
 			{/* menu burger	 */}
 			<div className={`navbar-menu relative z-50 lg:hidden ${hiddenBurger}`}>
@@ -107,26 +103,26 @@ export function Navbar({ user }) {
 					<div>
 						<ul>
 							{
-								user !== null && location.pathname !== '/login' && location.pathname !== '/register' ?
-
+								user!== null ?
+									<>
 									<li className="mb-1">
 										<a className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="#">Favorities</a>
 									</li>
-
+									<li className="mb-1">
+										<Link className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" to='/'>Home</Link>
+									</li>
+									<li className="mb-1">
+										<Link className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" to='/account'>Account</Link>
+									</li>
+									</>
 									:
 									<></>
 							}
-							<li className="mb-1">
-								<Link className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" to='/'>Home</Link>
-							</li>
-							<li className="mb-1">
-								<a className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="#">Profile</a>
-							</li>
 						</ul>
 					</div>
 					<div className="mt-auto">
 						<div className="pt-6">
-							
+
 							{
 								user==null ?
 									<div className="flex justify-center items-center gap-10">
@@ -139,17 +135,22 @@ export function Navbar({ user }) {
 											user !== null ?
 												<div className="flex items-center gap-3">
 													<img className="w-10 h-10 rounded-full" src={user.photoURL == null ? '/public/icons/perfilBlack.png' : user.photoURL} />
-													<b className="bold">{user.displayName}</b>
+													{
+														user.displayName !== null ?
+															<p className="text-sm leading-5">{user.displayName}</p>
+															:
+															<p className="text-sm leading-5">User{user.metadata.createdAt}</p>
+													}
+
 												</div>
 												:
 												<div>
 													<img className="w-10 h-10 rounded-full" src={user.photoURL == null ? '/public/icons/perfilBlack.png' : user.photoURL} />
-													<b className="bold">UserNameDefault</b>
 												</div>
 										}
 
 										<div className="flex justify-center mt-6 ">
-										<button onClick={() => { handleLogout() }} className=" lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200">logOut</button>
+											<button onClick={() => { handleLogout() }} className=" lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200">logOut</button>
 										</div>
 									</div>
 							}

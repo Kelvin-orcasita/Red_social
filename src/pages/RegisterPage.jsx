@@ -1,11 +1,23 @@
-import { registerUser } from "../firebase/register.js";
-import { useRef, useState } from "react";
+import { registerUser, auth } from "../firebase/register.js";
+import { useRef, useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Navbar } from "./components/Navbar.jsx";
 
 export function RegisterPage() {
-  const form = useRef(null)
   const [messageError, serMessageError] = useState('')
+  const [currentUser, setCurrentUser] = useState(null)
+  const form = useRef(null)
+  const navigate = useNavigate()
+
+
+  useEffect(() => {
+    const user = auth.currentUser;
+    if (user) {
+      setCurrentUser(user)
+    } else {
+      navigate('/');
+    }
+  }, []);
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -23,13 +35,11 @@ export function RegisterPage() {
     return serMessageError('password do not match')
   }
 
-  
-
   return (
     <>
         <section>
           <article>
-            <Navbar />
+            <Navbar user={currentUser} />
           </article>
         </section>
 

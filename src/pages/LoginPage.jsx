@@ -1,35 +1,46 @@
 import { LoginUser } from "../firebase/login.js";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { auth } from "../firebase/register.js";
 import { useNavigate, Link } from "react-router-dom";
 import { Navbar } from "./components/Navbar.jsx";
+
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 const provider = new GoogleAuthProvider();
 
 export function LoginPage() {
 
-    const form = useRef(null)
-    const [messageError, serMessageError] = useState('')
-    const navigate = useNavigate()
-    const auth = getAuth();
+  const form = useRef(null)
+  const [messageError, serMessageError] = useState('')
+  const [currentUser, setCurrentUser] = useState(null)
+  const navigate = useNavigate()
+  const authLogin = getAuth();
+
+  useEffect(() => {
+    const user = auth.currentUser;
+    if (user) {
+      setCurrentUser(user)
+    } else {
+      // navigate('/');
+    }
+  }, []);
 
   function handleSubmit(event) {
     event.preventDefault()
-    if(!form.current) return
-    if(!form.current.username.value) return serMessageError('Username is required') 
-    if(!form.current.password.value) return serMessageError('Password is required') 
+    if (!form.current) return
+    if (!form.current.username.value) return serMessageError('Username is required')
+    if (!form.current.password.value) return serMessageError('Password is required')
     LoginUser(form.current.username.value, form.current.password.value)
-  console.log(auth.currentUser);
-    if (auth.currentUser !== null) {
-        return navigate('/')
+  console.log(authLogin.currentUser);
+    if (authLogin.currentUser!==null) {
+      return navigate('/home')
     }
     form.current.reset()
     serMessageError('')
     return
-    
   }
 
   function handleGoggle() {
-    signInWithPopup(auth, provider)
+    signInWithPopup(authLogin, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -50,18 +61,18 @@ export function LoginPage() {
         // ...
       });
   }
-    return (
-      <>
- 
-          <Navbar />
- 
-        <section>
+  return (
+    <>
+
+      <Navbar user={currentUser} />
+
+      <section>
         <article>
           <div className="flex justify-center h-screen items-center bg-slate-200">
             <div className="w-full max-w-xs">
-              
+
               <form className="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4" ref={form} onSubmit={handleSubmit}>
-              <b className="block text-gray-700 text-2xl text-center font-bold mb-6">Log in</b>
+                <b className="block text-gray-700 text-2xl text-center font-bold mb-6">Log in</b>
                 <div className="mb-4">
                   <label
                     className="block text-gray-700 text-sm font-bold mb-2"
@@ -79,7 +90,7 @@ export function LoginPage() {
                 <div>
                   <label
                     className="block text-gray-700 text-sm font-bold mb-2"
-                    htmlFor="password" 
+                    htmlFor="password"
                   >
                     Password
                   </label>
@@ -94,35 +105,36 @@ export function LoginPage() {
                     {messageError}
                   </p>
                 </div>
-                
+
                 <div className="flex items-center justify-between">
                   <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit"
-                  > 
+                  >
                     Login
                   </button>
-                  
-                  <a
-                    className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#"
-                    onClick={handleGoggle}
-                  >
-                    <img title="Inicia sesión. Utiliza tu cuenta de Google" className="w-6" src="/public/icons/google.png" alt="Google" />
-                  </a>
-                  
-                  <Link title="Inicia sesión."
-                    className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+
+                  <Link title="go register."
+                    className="inline-block align-baseline text-sm text-blue-500 hover:text-blue-800"
                     to="/register"
                   >Register
                   </Link>
+                </div>
+
+                <div className="mt-6">
+                  <a className="flex justify-center items-center border py-2 px-4 gap-4 hover:bg-blue-600  text-sm text-black hover:text-white rounded-xl transition duration-200 shadow-[0_4px_6px_-4px_#3b71ca]" href="#"
+                    onClick={handleGoggle}>
+                    <p className="">Sign in with Google</p>
+                    <img title="Log in. Use your Google account" className="w-6 " src="/public/icons/google.png" alt="Google" />
+                  </a>
                 </div>
               </form>
             </div>
           </div>
         </article>
       </section>
-      </>
-    );
-  }
-  
-  export default LoginPage;
+    </>
+  );
+}
+
+export default LoginPage;
