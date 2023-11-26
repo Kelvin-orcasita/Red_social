@@ -1,5 +1,5 @@
 import { getAuth, signOut } from "firebase/auth";
-import { auth } from "../../firebase/register.js";
+import { auth } from "../../firebase/google/register.js";
 import { Link, useNavigate } from "react-router-dom";
 
 export function Dropdowns() {

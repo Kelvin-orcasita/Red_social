@@ -7,7 +7,6 @@ import { FavoritiesPage } from "./pages/FavoritiesPage";
 import { CreatePost } from "./pages/CreatePost";
 import { EditProfile } from "./pages/EditProfile";
 
-import { auth } from "./firebase/register";
 import { useEffect } from "react";
 
 function App() {

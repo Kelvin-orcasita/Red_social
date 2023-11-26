@@ -1,4 +1,4 @@
-import { registerUser, auth } from "../firebase/register.js";
+import { registerUserGoogle } from "../firebase/google/register.js";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Navbar } from "./components/Navbar.jsx";
@@ -9,16 +9,6 @@ export function RegisterPage() {
   const form = useRef(null)
   const navigate = useNavigate()
 
-
-  useEffect(() => {
-    const user = auth.currentUser;
-    if (user) {
-      setCurrentUser(user)
-    } else {
-      // navigate('/');
-    }
-  }, []);
-
   function handleSubmit(event) {
     event.preventDefault()
     if (!form.current) return
@@ -27,7 +17,7 @@ export function RegisterPage() {
       if (!form.current.password.value) return serMessageError('Password is required')
       if (form.current.password.value.length < 6) return serMessageError('Password must be at last 6 characters')
 
-      registerUser(form.current.username.value, form.current.password.value)
+      registerUserGoogle(form.current.username.value, form.current.password.value)
       form.current.reset()
       serMessageError('')
       return

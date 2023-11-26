@@ -28,7 +28,7 @@ export function EditProfile() {
                     >Fhoto
                     </label>
                   <div className='mb-4 flex gap-2'>
-                  { file ? <img className="w-10 h-10 rounded-full" src={URL.createObjectURL(file)} /> : <img className="w-10 h-10 rounded-full" src={user.photoURL == null ? '/public/icons/perfil.png' : user.photoURL} /> }
+                  { file ? <img className="w-10 h-10 rounded-full" src={URL.createObjectURL(file)} /> : <img className="w-10 h-10 rounded-full" src={user.photoURL == null ? '/public/icons/perfilBlack.png' : user.photoURL} /> }
                     
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

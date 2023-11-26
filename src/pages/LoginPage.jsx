@@ -1,6 +1,6 @@
-import { LoginUser } from "../firebase/login.js";
+import { LoginUser } from "../firebase/google/login.js";
 import { useRef, useState, useEffect } from "react";
-import { auth } from "../firebase/register.js";
+import { auth } from "../firebase/google/register.js";
 import { useNavigate, Link } from "react-router-dom";
 import { Navbar } from "./components/Navbar.jsx";
 
@@ -19,12 +19,12 @@ export function LoginPage() {
     if (!form.current) return
     if (!form.current.username.value) return setMessageError('Username is required')
     if (!form.current.password.value) return setMessageError('Password is required')
-    const resul = await LoginUser(form.current.username.value, form.current.password.value)
-    if(resul == null){
+    const result = await LoginUser(form.current.username.value, form.current.password.value)
+    if(result == null){
       return setMessageError('Credentials are not valid')
     }
     
-    localStorage.setItem('user', JSON.stringify(resul.user));
+    localStorage.setItem('user', JSON.stringify(result.user));
     navigate('/')
     return
   }
@@ -37,8 +37,9 @@ export function LoginPage() {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
+        console.log({user:user});
         localStorage.setItem('user', JSON.stringify(user));
-        navigate('/')
+        // navigate('/')
         // IdP data available using getAdditionalUserInfo(result)
         // ...
       }).catch((error) => {

@@ -1,17 +1,29 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { firebaseConfig } from "../config.js";
+import { firebaseConfig } from "../../config.js";
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
-export const registerUser = async (emailUser, passwordUser) => {
+export const registerUserGoogle = async (emailUser, passwordUser) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       emailUser,
       passwordUser,
     );
+
+    const email = userCredential.user.email;
+    const existInDb = getByEmail(email)
+    if(existInDb==null){
+      registerUser({
+        email: userCredential.user.email,
+        info: "",
+        password: userCredential.user.email,
+        name: userCredential.user.displayName, 
+        urlPhoto: userCredential.user.photoURL
+      })
+    }
     alert('Account Created successfully');
     
   } catch (error) {

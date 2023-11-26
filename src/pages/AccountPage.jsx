@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Navbar } from "./components/Navbar.jsx";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ContentHome from "./components/ContentHome.jsx";
 
 export function AccountPage() {
     const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem('user')))
-    const [btn, setBtn] = useState("hidden")
+    const [publications, setPublications] = useState("hidden")
+    const [favorities, setFavorities] = useState("hidden")
 
     return (
         <>
@@ -35,14 +36,20 @@ export function AccountPage() {
                         </div>
 
                         <div className="flex gap-2 mt-10">
-                            <button className="py-2 px-6 bg-slate-500 hover:bg-slate-800 text-sm text-white font-bold rounded-xl transition duration-200" type="button" onChange={() => setBtn('')}>Publications</button>
+                            <button className="py-2 px-6 bg-slate-500 hover:bg-slate-800 text-sm text-white font-bold rounded-xl transition duration-200" type="button" onClick={() => {setPublications(''); setFavorities('hidden')}}>Publications</button>
+
+                            <button className="py-2 px-6 bg-slate-500 hover:bg-slate-800 text-sm text-white font-bold rounded-xl transition duration-200" type="button" onClick={() => {setFavorities('');setPublications('hidden') }}>Favorities</button>
                         </div>
 
-                        <div className={`${btn}`}>
+                        <div className={`${publications}`}>
+                            <b className='block text-gray-700 text-2xl text-center font-bold my-6'>Publications</b>
                             <ContentHome/>
                         </div>
 
-
+                        <div className={`${favorities}`}>
+                            <b className='block text-gray-700 text-2xl text-center font-bold my-6'>Favorities</b>
+                            <ContentHome/>
+                        </div>
                     </div>
                 </article>
             </section>

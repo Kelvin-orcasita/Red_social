@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
-import { auth } from "../../firebase/register.js";
+import { auth } from "../../firebase/google/register.js";
 import { Dropdowns } from './Dropdowns';
 import { SearchHome } from "./SearchHome.jsx";
 
