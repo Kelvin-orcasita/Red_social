@@ -9,16 +9,14 @@ export const auth = getAuth(app);
 export const LoginUser = async (emailUser, passwordUser) => {
   
   try {
-    const userCredential = await signInWithEmailAndPassword(auth,emailUser,passwordUser);  
-    if (userCredential) {
-    }
-    return
+    const userCredential = await signInWithEmailAndPassword(auth,emailUser,passwordUser);      
+    return userCredential
       
     } catch (error) {
       const errorCode = error.code;
 
       if (errorCode === "auth/invalid-login-credentials") {
-         alert('Credenciales incorrectas');
+        return null 
       }
   }
 

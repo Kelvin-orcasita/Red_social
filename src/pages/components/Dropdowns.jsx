@@ -1,15 +1,16 @@
 import { getAuth, signOut } from "firebase/auth";
 import { auth } from "../../firebase/register.js";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 
 export function Dropdowns() {
-
-    const user = auth.currentUser;
+    const user = JSON.parse(localStorage.getItem('user'))
+    let navigate = useNavigate();
 
     const handleLogout = () => {
 		const auth = getAuth();
 		signOut(auth).then(() => {
+            navigate('/')
+			localStorage.removeItem('user')
 			window.location.reload(true);
 		}).catch((error) => {
 			console.log(error);
@@ -34,13 +35,13 @@ export function Dropdowns() {
                                         :
                                         <p className="text-sm leading-5">User{user.metadata.createdAt}</p>
                                     }
-                                    <p className="text-sm font-medium leading-5 text-gray-900 truncate">{user.email}</p>
+                                    <p className="text-sm font-medium leading-5 text-gray-900  truncate">{user.email}</p>
                                 </div>
                                 <div className="py-1">
-                                    <Link to='/account' tabIndex="0" className="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" role="menuitem">Account</Link>
-                                    <a href="#" tabIndex="1" className="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" role="menuitem" >Support</a>
+                                    <Link to='/account' tabIndex="0" className="text-gray-700 hover:text-blue-600 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" role="menuitem">Account</Link>
+                                    <a href="#" tabIndex="1" className="text-gray-700 hover:text-blue-600 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" role="menuitem" >Support</a>
                                     <hr />
-                                    <button onClick={() => { handleLogout() }} tabIndex="3" className="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" role="menuitem" >Sign out</button></div>
+                                    <button onClick={() => { handleLogout() }} tabIndex="3" className="text-gray-700 hover:text-blue-600 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" role="menuitem" >Sign out</button></div>
                             </div>
                         </div>
                     </div>

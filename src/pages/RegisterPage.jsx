@@ -15,7 +15,7 @@ export function RegisterPage() {
     if (user) {
       setCurrentUser(user)
     } else {
-      navigate('/');
+      // navigate('/');
     }
   }, []);
 
@@ -39,7 +39,7 @@ export function RegisterPage() {
     <>
         <section>
           <article>
-            <Navbar user={currentUser} />
+            <Navbar />
           </article>
         </section>
 
