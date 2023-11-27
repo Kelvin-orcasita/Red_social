@@ -1,9 +1,9 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { firebaseConfig } from "../../config.js";
+import { initializeApp } from 'firebase/app'
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { firebaseConfig } from '../../config.js'
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+const app = initializeApp(firebaseConfig)
+export const auth = getAuth(app)
 
 export const registerUserGoogle = async (emailUser, passwordUser) => {
   try {
@@ -11,34 +11,31 @@ export const registerUserGoogle = async (emailUser, passwordUser) => {
       auth,
       emailUser,
       passwordUser,
-    );
+    )
 
-    const email = userCredential.user.email;
+    const email = userCredential.user.email
     const existInDb = getByEmail(email)
-    if(existInDb==null){
+    if (existInDb == null) {
       registerUser({
         email: userCredential.user.email,
-        info: "",
+        info: '',
         password: userCredential.user.email,
-        name: userCredential.user.displayName, 
-        urlPhoto: userCredential.user.photoURL
+        name: userCredential.user.displayName,
+        urlPhoto: userCredential.user.photoURL,
       })
     }
-    alert('Account Created successfully');
-    
+    alert('Account Created successfully')
   } catch (error) {
-    const errorCode = error.code;
+    const errorCode = error.code
 
-    if (errorCode === "auth/email-already-in-use") {
-      alert('Corrreo electronico ya en uso');
+    if (errorCode === 'auth/email-already-in-use') {
+      alert('Corrreo electronico ya en uso')
     }
     if (errorCode === 'auth/invalid-email') {
-      alert("Correo inválido");
+      alert('Correo inválido')
     }
     if (errorCode === 'auth/weak-password') {
-      alert('Contraseña débil');
+      alert('Contraseña débil')
     }
   }
-};
-
-
+}
