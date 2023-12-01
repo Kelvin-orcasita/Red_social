@@ -13,7 +13,6 @@ export function ContentHome() {
 
   async function  getPublicationsAll() {
     const _publications = await getPublications()
-    console.log(publications);
     setPublications(_publications)
   }
 

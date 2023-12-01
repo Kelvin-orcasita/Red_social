@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { Navbar } from './components/Navbar.jsx'
 import { createPublication } from '../firebase/publications/createPublication.js'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export function CreatePost() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
@@ -10,10 +10,12 @@ export function CreatePost() {
   const navigate = useNavigate()
   const form = useRef(null)
 
+  console.log(file);
+
   async function handleSubmit(event) {
     event.preventDefault()
-    if(file.name ==null){
-    return setError('You must post an image')}
+    if(file == null ||  file.name ==null){ return setError('You must post an image')}
+    if(form.current.title.value == ''){ return setError('You must add a title')}
     if(file.size < 1048487){
       let base64 = await toBase64(file)
       const result = await createPublication({
@@ -24,7 +26,7 @@ export function CreatePost() {
         date: new Date()
       })
         if (result==null) {
-          return setError('Error in publication')
+          return setError('You must upload an image and a title.')
         }else{
           navigate('/')
         }
@@ -101,6 +103,7 @@ export function CreatePost() {
                           type='file'
                           accept='image/png,image/jpeg,image/jpg'
                           className='lg:hidden w-auto'
+                          onChange={(e) => setFile(e.target.files[0])}
                         />
 
                         <input
@@ -127,7 +130,7 @@ export function CreatePost() {
                           name='title'
                           type='text'
                           placeholder='Titulo'
-                          disabled={!file && true}
+                          // disabled={!file && true}
                         />
                       </div>
 
@@ -143,18 +146,19 @@ export function CreatePost() {
                           rows='4'
                           className='block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                           name='description'
-                          disabled={!file && true}
+                          // disabled={!file && true}
                           placeholder='Write your information here...'
                         ></textarea>
                       </div>
                       {
                         error!=='' &&
                       
-                      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                      <strong class="font-bold">Alert! </strong>
-                      <span class="block sm:inline">{error}</span>
-                      <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-                        <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                      <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                      <strong className="font-bold">Alert! </strong>
+                      <span className="block sm:inline">{error}</span>
+                      <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
+                        
+                        <a onClick={()=>setError('')}><svg className="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg></a>
                       </span>
                     </div>
 }
@@ -165,10 +169,10 @@ export function CreatePost() {
                     <button
                       className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
                       type='submit'
-                      disabled={!file && true}
+                      // disabled={!file && true}
                       onClick={handleSubmit}
                     >
-                      Post
+                      Publish
                     </button>
                   </div>
                 </form>

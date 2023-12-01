@@ -70,7 +70,7 @@ export function EditProfile() {
                       className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                       name='username'
                       type='text'
-                      defaultValue={user.displayName}
+                      defaultValue={user.displayName!==undefined ? user.displayName: 'Undefined name'}
                       placeholder='Username'
                     />
                   </div>

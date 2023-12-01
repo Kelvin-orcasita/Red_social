@@ -11,13 +11,13 @@ export const createPublication = async (post) => {
     if(post.img=="" || post.img==undefined){
       return alert('You must post an image')
     }else if (post.title.trim()==""){
-      return alert('field title is required')
+      return 
     }else{
       let result = await addDoc(collection(db, 'publications'), post)
       return 'successfully published'
     } 
   } catch (error) {
     console.log(error);
-    return 'Error in publication'
+    return alert('Error in publication')
   }
 }

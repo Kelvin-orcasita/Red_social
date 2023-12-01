@@ -18,6 +18,7 @@ export function Dropdowns() {
         console.log(error)
       })
   }
+  console.log(user.displayName);
 
   return (
     <>
@@ -48,11 +49,11 @@ export function Dropdowns() {
                 role='menu'
               >
                 <div className='px-4 py-3'>
-                  {user.displayName !== null ? (
+                  {user.displayName!==undefined ?
                     <p className='text-sm leading-5'>{user.displayName} </p>
-                  ) : (
+                   : 
                     <p className='text-sm leading-5'>Undefined name</p>
-                  )}
+                  }
                   <p className='text-sm font-medium leading-5 text-gray-900  truncate'>
                     {user.email}
                   </p>
