@@ -5,6 +5,7 @@ import { useNavigate, Link } from 'react-router-dom'
 export function EditProfile() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
   const [file, setFile] = useState(null)
+  console.log(file);
 
   function handleSubmit() {
     console.log('editar')

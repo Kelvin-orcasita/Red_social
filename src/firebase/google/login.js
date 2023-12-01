@@ -16,13 +16,11 @@ export const LoginUser = async (emailUser, passwordUser) => {
     )
     const email = userCredential.user.email
     const existInDb = await getByEmail(email)
-    console.log({ existInDb: existInDb })
     if (existInDb == null) {
       await registerUser({
         email: userCredential.user.email,
         info: '',
-        password: userCredential.user.email,
-        name: userCredential.user.uid,
+        name: 'Usuario no definido',
         urlPhoto: userCredential.user.photoURL,
       })
     }

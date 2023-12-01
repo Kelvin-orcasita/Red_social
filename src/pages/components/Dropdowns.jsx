@@ -74,7 +74,7 @@ export function Dropdowns() {
                     role='menuitem'
                   >
                     <img className='w-4' src='/public/svg/bell.svg' alt='' />
-                    Support
+                    Notifications
                   </a>
                   <hr />
                   <button

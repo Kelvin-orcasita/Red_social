@@ -10,6 +10,8 @@ import {
   GoogleAuthProvider,
   reload,
 } from 'firebase/auth'
+import { getByEmail } from '../firebase/users/getAll.js'
+import { registerUser } from '../firebase/users/register.js'
 const provider = new GoogleAuthProvider()
 
 export function LoginPage() {
@@ -40,12 +42,22 @@ export function LoginPage() {
 
   function handleGoggle() {
     signInWithPopup(authLogin, provider)
-      .then((result) => {
+      .then(async (result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result)
         const token = credential.accessToken
         // The signed-in user info.
         const user = result.user
+        const email = user.email
+        const existInDb = await getByEmail(email)
+        if (existInDb == null) {
+          await registerUser({
+            email: email,
+            info: '',
+            name: user.displayName,
+            urlPhoto: user.photoURL,
+          })
+        }
         localStorage.setItem('user', JSON.stringify(user))
         navigate('/')
         // IdP data available using getAdditionalUserInfo(result)
@@ -98,7 +110,7 @@ export function LoginPage() {
                 <div>
                   <label
                     className='block text-gray-700 text-sm font-bold mb-2'
-                    htmlFor='password'
+                    htmlFor='text'
                   >
                     Password
                   </label>

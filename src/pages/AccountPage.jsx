@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Navbar } from './components/Navbar.jsx'
 import { Link } from 'react-router-dom'
 import ContentHome from './components/ContentHome.jsx'
+import ContentFavorities from './components/ContentFavorities.jsx'
+import ContentMyPublicaciones from './components/ContentMyPublicaciones.jsx'
 
 export function AccountPage() {
   const [currentUser, setCurrentUser] = useState(
@@ -76,14 +78,14 @@ export function AccountPage() {
                 <b className='block text-gray-700 text-2xl text-center font-bold my-6'>
                   Publications
                 </b>
-                <ContentHome />
+                <ContentMyPublicaciones />
               </div>
 
               <div className={`${favorities}`}>
                 <b className='block text-gray-700 text-2xl text-center font-bold my-6'>
                   Favorities
                 </b>
-                <ContentHome />
+                <ContentFavorities />
               </div>
             </div>
           </article>
