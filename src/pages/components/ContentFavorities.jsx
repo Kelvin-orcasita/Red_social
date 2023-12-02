@@ -1,10 +1,9 @@
-import ContentHome from "./ContentHome"
+import ContentHome from './ContentHome'
 
-export function ContentFavorities() {  
-
+export function ContentFavorities() {
   return (
     <>
-      <ContentHome/>
+      <ContentHome />
     </>
   )
 }

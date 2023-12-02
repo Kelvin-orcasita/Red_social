@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { firebaseConfig } from '../../config.js'
-import { getAll, getByEmail } from '../users/getAll.js'
+import { getByEmail } from '../users/getAll.js'
 import { registerUser } from '../users/register.js'
 
 const app = initializeApp(firebaseConfig)
@@ -20,7 +20,7 @@ export const LoginUser = async (emailUser, passwordUser) => {
       await registerUser({
         email: userCredential.user.email,
         info: '',
-        name: 'Usuario no definido',
+        name: 'Undefined name',
         urlPhoto: userCredential.user.photoURL,
       })
     }

@@ -1,16 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Navbar } from './components/Navbar.jsx'
 import { Link } from 'react-router-dom'
 import ContentHome from './components/ContentHome.jsx'
 import ContentFavorities from './components/ContentFavorities.jsx'
 import ContentMyPublicaciones from './components/ContentMyPublicaciones.jsx'
+import { getMyProfile } from '../firebase/perfil/getProfile.js'
 
 export function AccountPage() {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem('user')),
   )
+  const [profile, setProfile] = useState([])
   const [publications, setPublications] = useState('hidden')
   const [favorities, setFavorities] = useState('hidden')
+
+  useEffect(() => {
+    getMyProfileSesion()
+  }, [])
+
+  async function getMyProfileSesion() {
+    const _profile = await getMyProfile()
+    setProfile(_profile)
+  }
 
   return (
     <>
@@ -20,26 +31,22 @@ export function AccountPage() {
           <article>
             <div className='flex flex-col justify-center items-center py-20'>
               <img
-                className='w-25 h-25 rounded-full'
+                className='w-1/6 rounded-full'
                 src={
-                  currentUser.photoURL == null
+                  profile.urlPhoto == null
                     ? '/public/icons/perfilBlack.png'
-                    : currentUser.photoURL
+                    : profile.urlPhoto
                 }
                 alt='User'
               />
 
-              {currentUser.displayName == null ? (
-                <>
-                  <b className='py-2 text-xl'>Undefined name</b>
-                  <p>{currentUser.email}</p>
-                </>
-              ) : (
-                <>
-                  <b className='py-2 text-xl'>{currentUser.displayName}</b>
-                  <p>{currentUser.email}</p>
-                </>
-              )}
+              <b className='py-2 text-xl'>
+                {profile.name == 'Undefined name'
+                  ? 'Undefined name'
+                  : profile.name}
+              </b>
+
+              <p>{profile.info}</p>
 
               <div className='my-10'>
                 <Link

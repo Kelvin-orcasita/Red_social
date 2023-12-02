@@ -8,7 +8,6 @@ export const db = getFirestore(app)
 export const registerUser = async (user) => {
   try {
     let result = await addDoc(collection(db, 'users'), user)
-    console.log({ result: result })
     return 'Register success'
   } catch (error) {
     console.log({ error: error })

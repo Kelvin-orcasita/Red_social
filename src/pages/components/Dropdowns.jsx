@@ -1,10 +1,21 @@
 import { getAuth, signOut } from 'firebase/auth'
-import { auth } from '../../firebase/google/register.js'
+import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { getMyProfile } from '../../firebase/perfil/getProfile'
 
 export function Dropdowns() {
   const user = JSON.parse(localStorage.getItem('user'))
+  const [profile, setProfile] = useState([])
   let navigate = useNavigate()
+
+  useEffect(() => {
+    getMyProfileSesion()
+  }, [])
+
+  async function getMyProfileSesion() {
+    const _profile = await getMyProfile()
+    setProfile(_profile)
+  }
 
   const handleLogout = () => {
     const auth = getAuth()
@@ -18,7 +29,6 @@ export function Dropdowns() {
         console.log(error)
       })
   }
-  console.log(user.displayName);
 
   return (
     <>
@@ -35,9 +45,9 @@ export function Dropdowns() {
               <img
                 className='w-10 h-10 rounded-full'
                 src={
-                  user.photoURL == null
+                  profile.urlPhoto == null
                     ? '/public/icons/perfil.png'
-                    : user.photoURL
+                    : profile.urlPhoto
                 }
               />
             </button>
@@ -49,13 +59,15 @@ export function Dropdowns() {
                 role='menu'
               >
                 <div className='px-4 py-3'>
-                  {user.displayName!==undefined ?
-                    <p className='text-sm leading-5'>{user.displayName} </p>
-                   : 
-                    <p className='text-sm leading-5'>Undefined name</p>
+                  {
+                    <p className='text-sm leading-5'>
+                      {profile.name == 'Undefined name'
+                        ? 'Undefined name'
+                        : profile.name}
+                    </p>
                   }
                   <p className='text-sm font-medium leading-5 text-gray-900  truncate'>
-                    {user.email}
+                    {profile.email}
                   </p>
                 </div>
                 <div className='py-1'>

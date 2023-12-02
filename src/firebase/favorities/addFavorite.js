@@ -6,13 +6,11 @@ const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
 
 export const createFavorite = async (favorite) => {
-
   try {
-      let result = await addDoc(collection(db, 'favorities'), favorite)
-      return ''
-    
+    let result = await addDoc(collection(db, 'favorities'), favorite)
+    return ''
   } catch (error) {
-    console.log(error);
+    console.log(error)
     return ''
   }
 }
