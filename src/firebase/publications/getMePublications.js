@@ -8,6 +8,7 @@ import {
 } from 'firebase/firestore'
 import { firebaseConfig } from '../../config.js'
 import { getUserFromEmail } from './getUserFromEmail.js'
+import { isFavorite } from './isFavorite.js'
 
 const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
@@ -23,6 +24,7 @@ export const getMePublications = async () => {
       let element = result.docs[i].data()
       element.id = result.docs[i].id
       element.fullUser = await getUserFromEmail(element.user)
+      element.isFavorite = await isFavorite(element.id, element.fullUser.email)
       data.push(element)
     }
     data.sort(function (x, y) {

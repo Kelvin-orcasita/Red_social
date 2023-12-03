@@ -31,7 +31,7 @@ export function AccountPage() {
           <article>
             <div className='flex flex-col justify-center items-center py-20'>
               <img
-                className='w-1/6 rounded-full'
+                className='1/12 rounded-full'
                 src={
                   profile.urlPhoto == null
                     ? '/public/icons/perfilBlack.png'
@@ -46,7 +46,7 @@ export function AccountPage() {
                   : profile.name}
               </b>
 
-              <p>{profile.info}</p>
+              <p className='px-8'>{profile.info}</p>
 
               <div className='my-10'>
                 <Link
