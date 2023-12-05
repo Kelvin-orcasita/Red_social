@@ -7,3 +7,9 @@
   transform: translate(0) scale(1);
   visibility: visible;
 }
+
+#menufijo {
+  width: 100%;
+  position: fixed;
+  top: 0;
+}

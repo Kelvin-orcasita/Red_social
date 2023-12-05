@@ -20,6 +20,10 @@ export function DropdownsPublication(idPublication) {
   function handleDeletePublication(id) {
     publications.forEach((item) => {
       if (item.id === id) {
+        const confirmar = confirm('The post will be deleted')
+        if (!confirmar) {
+          return
+        }
         deletePublication({
           id: id,
           email: item.user,
@@ -56,7 +60,7 @@ export function DropdownsPublication(idPublication) {
                 <button
                   onClick={() => handleDeletePublication(idPublication.id)}
                   tabIndex='0'
-                  className='text-gray-700 hover:text-blue-600 flex gap-2 w-full px-4 py-2 text-sm leading-5 text-left'
+                  className='text-gray-700 hover:text-red-700 flex gap-2 w-full px-4 py-2 text-sm leading-5 text-left'
                   role='menuitem'
                 >
                   <img

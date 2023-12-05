@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { getMePublications } from '../../firebase/publications/getMePublications.js'
 import { createFavorite } from '../../firebase/favorities/addFavorite.js'
 import { removeFavorite } from '../../firebase/favorities/removeFavorite.js'
+import { DropdownsPublication } from './DropdownsPublication.jsx'
 
 export function ContentMyPublicaciones() {
   const [publications, setPublications] = useState([])
@@ -46,25 +47,45 @@ export function ContentMyPublicaciones() {
                 key={publication.id}
                 className='flex flex-col items-start lg:p-2 group bg-gray-100 rounded-xl'
               >
-                <div className='flex items-center gap-2 px-2 pb-1 w-full'>
-                  {
-                    <img
-                      id='fhotoProfile'
-                      className='w-10 h-10 rounded-full'
-                      src={
-                        publication.fullUser == null ||
-                        publication.fullUser.urlPhoto == null ||
-                        publication.fullUser.urlPhoto == ''
-                          ? '/public/icons/perfilBlack.png'
-                          : publication.fullUser.urlPhoto
-                      }
-                    />
-                  }
-                  <label htmlFor='fhotoProfile' className='text-sm px-2'>
-                    {publication.fullUser.name == null
-                      ? 'Undefined name'
-                      : publication.fullUser.name}
-                  </label>
+                <div className='flex items-center px-1 pb-1 w-full'>
+                  <div className='flex justify-normal items-center w-full'>
+                    {
+                      <img
+                        id='fhotoProfile'
+                        className='w-10 h-10 rounded-full'
+                        src={
+                          publication.fullUser == null ||
+                          publication.fullUser.urlPhoto == null ||
+                          publication.fullUser.urlPhoto == ''
+                            ? '/public/icons/perfilBlack.png'
+                            : publication.fullUser.urlPhoto
+                        }
+                      />
+                    }
+                    <label
+                      htmlFor='fhotoProfile'
+                      className='flex justify-start text-sm px-2'
+                    >
+                      {publication.fullUser.name == null
+                        ? 'Undefined name'
+                        : publication.fullUser.name}
+                    </label>
+                  </div>
+                  {user !== null ? (
+                    <div className='flex justify-end items-center'>
+                      {publication.user == user.email ? (
+                        <DropdownsPublication id={publication.id} />
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                  ) : (
+                    <div className='flex justify-end items-center'>
+                      <Link to='/login'>
+                        <DropdownsPublication />
+                      </Link>
+                    </div>
+                  )}
                 </div>
 
                 <a
@@ -88,7 +109,7 @@ export function ContentMyPublicaciones() {
                       className='mx-2 text-gray-600 dark:text-gray-300'
                     >
                       <img
-                        className='w-6 h-6'
+                        className='w-6 h-6 hover:cursor-pointer'
                         src={
                           publication.isFavorite
                             ? '/public/svg/like-true.svg'
@@ -103,12 +124,13 @@ export function ContentMyPublicaciones() {
                       className='mx-2 text-gray-600 dark:text-gray-300'
                     >
                       <img
-                        className='w-6 h-6'
+                        className='w-6 h-6 hover:cursor-pointer'
                         src='/public/svg/like.svg'
                         alt=''
                       />
                     </Link>
                   )}
+
                   {/* <a
                   href='#'
                   className='mx-2 text-gray-600 dark:text-gray-300'

@@ -21,7 +21,7 @@ export const getByEmail = async (email) => {
     querySnapshot.forEach((doc) => {
       emailuser = doc.data()
     })
-    return emailuser.email
+    return emailuser.email, emailuser
   } catch (error) {
     return null
   }

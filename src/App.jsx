@@ -7,6 +7,7 @@ import { CreatePost } from './pages/CreatePost'
 import { EditProfile } from './pages/EditProfile'
 
 import { useEffect } from 'react'
+import { SearchHome } from './pages/components/SearchHome'
 
 function App() {
   let location = useLocation()
@@ -33,6 +34,7 @@ function App() {
       <Route path='/account' element={<AccountPage />} />
       <Route path='/editprofile' element={<EditProfile />} />
       <Route path='/createpost' element={<CreatePost />} />
+      <Route path='/search' element={<SearchHome />} />
     </Routes>
   )
 }

@@ -37,9 +37,12 @@ export function Navbar() {
 
   return (
     <>
-      <nav className='relative px-4 py-6 flex justify-between items-center bg-slate-950'>
+      <nav
+        id='menufijo'
+        className='px-4 py-6 flex justify-between items-center bg-slate-950'
+      >
         <Link className='text-3xl font-bold leading-none text-white' to='/'>
-          Logo
+          People
         </Link>
 
         <div className='lg:hidden'>
@@ -58,7 +61,7 @@ export function Navbar() {
           </a>
         </div>
 
-        <ul className='hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2  lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6'>
+        <ul className='hidden lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6'>
           {user !== null ? (
             <>
               {location.pathname !== '/createpost' && (
@@ -108,15 +111,21 @@ export function Navbar() {
                   Account
                 </Link>
               </li>
-              <li className='text-gray-300'></li>
             </>
           ) : (
             <></>
           )}
         </ul>
-
+        <Link className='lg:me-10' to='/search'>
+          <img
+            title='Search by title'
+            className='w-6'
+            src='/public/svg/search.svg'
+            alt='search'
+          />
+        </Link>
         {user == null && (
-          <div>
+          <div className='lg:flex lg:items-center lg:gap-2'>
             <Link
               className='hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200'
               to='/login'
@@ -131,16 +140,20 @@ export function Navbar() {
             </Link>
           </div>
         )}
+
         {user !== undefined && user !== null && <Dropdowns />}
       </nav>
 
       {/* menu burger	 */}
-      <div className={`navbar-menu relative z-50 lg:hidden ${hiddenBurger}`}>
+      <div
+        id='menufijo'
+        className={`navbar-menu relative z-50 lg:hidden ${hiddenBurger}`}
+      >
         <div className='navbar-backdrop fixed inset-0 bg-gray-800 opacity-25'></div>
         <nav className='fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto'>
-          <div className='flex items-center mb-8'>
+          <div className='flex items-center gap-8 mb-8'>
             <Link className='mr-auto text-3xl font-bold leading-none' to='/'>
-              Logo
+              People
             </Link>
             <a onClick={handleCloseBurger} className='navbar-close'>
               <svg

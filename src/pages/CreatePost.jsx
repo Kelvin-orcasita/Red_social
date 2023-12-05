@@ -47,7 +47,9 @@ export function CreatePost() {
 
   return (
     <>
-      <Navbar />
+      <div className='mb-10'>
+        <Navbar />
+      </div>
       {
         <section>
           <article>
@@ -92,7 +94,7 @@ export function CreatePost() {
                                 or drag and drop
                               </p>
                               <p className='text-xs text-gray-500 dark:text-gray-400'>
-                                PNG, JPG or JPEG(MAX. 800x400px)
+                                PNG, JPG or JPEG
                               </p>
                             </>
                           )}

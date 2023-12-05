@@ -54,7 +54,9 @@ export function EditProfile() {
 
   return (
     <>
-      <Navbar />
+      <div className='mb-20'>
+        <Navbar />
+      </div>
       {
         <section>
           <article>

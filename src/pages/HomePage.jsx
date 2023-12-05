@@ -1,21 +1,16 @@
 import { Navbar } from './components/Navbar.jsx'
 import { ContentHome } from './components/ContentHome.jsx'
-import { SearchHome } from './components/SearchHome.jsx'
 
 export function HomePage() {
   return (
     <>
       <section>
-        <article>
+        <article className='mb-36'>
           <Navbar />
         </article>
       </section>
 
-      <section className='mt-44'>
-        <article>
-          <SearchHome />
-        </article>
-
+      <section className='my-10'>
         <article>
           <ContentHome />
         </article>

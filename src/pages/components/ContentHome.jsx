@@ -7,6 +7,8 @@ import { DropdownsPublication } from './DropdownsPublication'
 
 export function ContentHome() {
   const [publications, setPublications] = useState([])
+  const [seconds, setSeconds] = useState([])
+
   let user = JSON.parse(localStorage.getItem('user'))
   const navigate = useNavigate()
 
@@ -17,7 +19,11 @@ export function ContentHome() {
   async function getPublicationsAll() {
     const _publications = await getPublications()
     setPublications(_publications)
+    // const datePublication = await getDatePublication(1701735411)
+    // console.log(datePublication);
+    // setSeconds(datePublication)
   }
+
   function validateFavorite(publication) {
     let pubs = []
     publications.forEach((item) => {
@@ -37,6 +43,13 @@ export function ContentHome() {
     })
     setPublications(pubs)
   }
+
+  //  function getDatePublication (secs){
+  //     let t = new Date(1970, 0, 1); // Epoch
+  //     t.setSeconds(secs);
+
+  //     setSeconds(t)
+  // }
 
   return (
     <>
@@ -73,7 +86,7 @@ export function ContentHome() {
                     </label>
                   </div>
                   {user !== null ? (
-                    <div className='flex justify-end gap-10 items-center'>
+                    <div className='flex justify-end items-center'>
                       {publication.user == user.email ? (
                         <DropdownsPublication id={publication.id} />
                       ) : (
@@ -81,26 +94,41 @@ export function ContentHome() {
                       )}
                     </div>
                   ) : (
-                    <div className='flex justify-end gap-10 items-center'>
+                    <div className='flex justify-end items-center'>
                       <Link to='/login'>
-                        <DropdownsPublication />
+                        <img
+                          className='w-6 h-6 rounded-full'
+                          src='/public/svg/options.svg'
+                        />
                       </Link>
                     </div>
                   )}
                 </div>
-
-                <a
-                  className='lg:h-full lg:w-full'
-                  onDoubleClick={() => {
-                    validateFavorite(publication)
-                  }}
-                >
-                  <img
-                    className='object-cover lg:h-full lg:w-full'
-                    src={publication.img}
-                    alt={publication.title}
-                  />
-                </a>
+                {user !== null ? (
+                  <a
+                    className='lg:h-full lg:w-full'
+                    onDoubleClick={() => {
+                      validateFavorite(publication)
+                    }}
+                  >
+                    <img
+                      className='object-cover lg:h-full lg:w-full'
+                      src={publication.img}
+                      alt={publication.title}
+                    />
+                  </a>
+                ) : (
+                  <a
+                    className='lg:h-full lg:w-full'
+                    onDoubleClick={() => navigate('/login')}
+                  >
+                    <img
+                      className='object-cover lg:h-full lg:w-full'
+                      src={publication.img}
+                      alt={publication.title}
+                    />
+                  </a>
+                )}
                 <div className='flex mt-3 px-2 gap-2'>
                   {user !== null ? (
                     <a
@@ -132,14 +160,6 @@ export function ContentHome() {
                     </Link>
                   )}
 
-                  {/* <a
-                  href='#'
-                  className='mx-2 text-gray-600 dark:text-gray-300'
-                  
-                >
-                  <img className="w-6 h-6" src="/public/svg/comment.svg" alt="" />
-                </a> */}
-
                   <a href='#' className='mx-2 text-gray-600 dark:text-gray-300'>
                     <img
                       className='w-6 h-6'
@@ -160,7 +180,6 @@ export function ContentHome() {
               </div>
             ))}
           </div>
-          <br />
         </div>
       </section>
     </>
