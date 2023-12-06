@@ -9,13 +9,17 @@ export const db = getFirestore(app)
 
 export const getPublications = async () => {
   try {
+    let user = JSON.parse(localStorage.getItem('user'))
+
     let result = await getDocs(collection(db, 'publications'))
     let data = []
     for (let i = 0; i < result.docs.length; i++) {
       let element = result.docs[i].data()
       element.id = result.docs[i].id
       element.fullUser = await getUserFromEmail(element.user)
-      element.isFavorite = await isFavorite(element.id, element.fullUser.email)
+      if(user!==null){
+        element.isFavorite = await isFavorite(element.id, user.email)
+      }
       data.push(element)
     }
     data.sort(function (x, y) {

@@ -5,7 +5,6 @@ import { LoginPage } from './pages/LoginPage'
 import { AccountPage } from './pages/AccountPage'
 import { CreatePost } from './pages/CreatePost'
 import { EditProfile } from './pages/EditProfile'
-
 import { useEffect } from 'react'
 import { SearchHome } from './pages/components/SearchHome'
 
@@ -13,13 +12,23 @@ function App() {
   let location = useLocation()
   let navigate = useNavigate()
 
-  let routesNotAuth = ['/login', '/register']
+  let routestAuth = ['/login', '/register']
+  let routesNotAuth = ['/account', '/editprofile', '/createpost', '/editprofile']
+
   useEffect(() => {
     let user = JSON.parse(localStorage.getItem('user'))
     if (
-      routesNotAuth.find((p) => p == location.pathname) != null &&
+      routestAuth.find((p) => p == location.pathname) != null &&
       user !== null &&
       user !== undefined
+    ) {
+      navigate('/')
+    }
+    
+    if (
+      routesNotAuth.find((p) => p == location.pathname) != null &&
+      user == null &&
+      user == undefined
     ) {
       navigate('/')
     }

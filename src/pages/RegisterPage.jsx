@@ -2,6 +2,7 @@ import { registerUserGoogle } from '../firebase/google/register.js'
 import { useRef, useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { Navbar } from './components/Navbar.jsx'
+import { registerUser } from '../firebase/users/register.js'
 
 export function RegisterPage() {
   const [messageError, serMessageError] = useState('')
@@ -9,7 +10,7 @@ export function RegisterPage() {
   const form = useRef(null)
   const navigate = useNavigate()
 
-  function handleSubmit(event) {
+ async function handleSubmit(event) {
     event.preventDefault()
     if (!form.current) return
     if (form.current.password.value === form.current.repeatPassword.value) {
@@ -24,8 +25,11 @@ export function RegisterPage() {
         form.current.username.value,
         form.current.password.value,
       )
-      form.current.reset()
-      serMessageError('')
+      const result = await registerUser()
+      if (result) {
+        alert('User registration')
+        navigate('/login')
+      }
       return
     }
     return serMessageError('password do not match')

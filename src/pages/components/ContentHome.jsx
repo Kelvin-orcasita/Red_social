@@ -7,7 +7,6 @@ import { DropdownsPublication } from './DropdownsPublication'
 
 export function ContentHome() {
   const [publications, setPublications] = useState([])
-  const [seconds, setSeconds] = useState([])
 
   let user = JSON.parse(localStorage.getItem('user'))
   const navigate = useNavigate()
@@ -19,12 +18,10 @@ export function ContentHome() {
   async function getPublicationsAll() {
     const _publications = await getPublications()
     setPublications(_publications)
-    // const datePublication = await getDatePublication(1701735411)
-    // console.log(datePublication);
-    // setSeconds(datePublication)
   }
 
   function validateFavorite(publication) {
+    console.log({publication: publication});
     let pubs = []
     publications.forEach((item) => {
       if (item.id === publication.id) {
@@ -44,12 +41,6 @@ export function ContentHome() {
     setPublications(pubs)
   }
 
-  //  function getDatePublication (secs){
-  //     let t = new Date(1970, 0, 1); // Epoch
-  //     t.setSeconds(secs);
-
-  //     setSeconds(t)
-  // }
 
   return (
     <>
