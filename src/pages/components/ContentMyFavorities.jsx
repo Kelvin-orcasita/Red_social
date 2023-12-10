@@ -5,23 +5,23 @@ import { removeFavorite } from '../../firebase/favorities/removeFavorite.js'
 import { DropdownsPublication } from './DropdownsPublication.jsx'
 import { getMeFavorities } from '../../firebase/favorities/getMeFavorities.js'
 
-export function ContentMyPublicaciones() {
-  const [publications, setPublications] = useState([])
+export function ContentMyFavorities() {
+  const [favorities, setFavorities] = useState([])
   const user = JSON.parse(localStorage.getItem('user'))
   const [liked, setLiked] = useState(false)
 
   useEffect(() => {
-    getMysPublication()
+    getMysFavorities()
   }, [])
 
-  async function getMysPublication() {
-    const result = await getMePublications()
-    setPublications(result)
+  async function getMysFavorities() {
+    const result = await getMeFavorities()
+    setFavorities(result)
   }
 
   function validateFavorite(publication) {
     let pubs = []
-    publications.forEach((item) => {
+    favorities.forEach((item) => {
       if (item.id === publication.id) {
         item.isFavorite = !item.isFavorite
         let favorite = {
@@ -37,7 +37,7 @@ export function ContentMyPublicaciones() {
       }
       pubs.push(item)
     })
-    setPublications(pubs)
+    setFavorities(pubs)
   }
 
   const handleLike = () => {
@@ -52,7 +52,7 @@ export function ContentMyPublicaciones() {
       <section className='bg-white dark:bg-gray-900'>
         <div className='container lg:px-6 mx-auto'>
           <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-3'>
-            {publications.map((publication) => (
+            {favorities.map((publication) => (
               <div
                 key={publication.id}
                 className='flex flex-col items-start lg:p-2 group bg-gray-100 rounded-xl'
@@ -150,21 +150,13 @@ export function ContentMyPublicaciones() {
                     </Link>
                   )}
 
-                  {/* <a
-                  href='#'
-                  className='mx-2 text-gray-600 dark:text-gray-300'
-                  
-                >
-                  <img className="w-6 h-6" src="/public/svg/comment.svg" alt="" />
-                </a> */}
-
-                  <a href='#' className='mx-2 text-gray-600 dark:text-gray-300'>
+                  {/* <a href='#' className='mx-2 text-gray-600 dark:text-gray-300'>
                     <img
                       className='w-6 h-6'
                       src='/public/svg/basic-sent.svg'
                       alt=''
                     />
-                  </a>
+                  </a> */}
                 </div>
                 <div className='flex flex-col justify-center px-2 w-full'>
                   <h1 className='mt-4 text-left text-xl font-semibold text-gray-700 '>
@@ -185,4 +177,4 @@ export function ContentMyPublicaciones() {
   )
 }
 
-export default ContentMyPublicaciones
+export default ContentMyFavorities

@@ -38,7 +38,7 @@ export function Navbar() {
   return (
     <>
       <nav
-        id='menufijo'
+        id='navMenu'
         className='px-4 py-6 flex justify-between items-center bg-slate-950'
       >
         <Link className='text-3xl font-bold leading-none text-white' to='/'>
@@ -146,7 +146,7 @@ export function Navbar() {
 
       {/* menu burger	 */}
       <div
-        id='menufijo'
+        id='navMenu'
         className={`navbar-menu relative z-50 lg:hidden ${hiddenBurger}`}
       >
         <div className='navbar-backdrop fixed inset-0 bg-gray-800 opacity-25'></div>

@@ -12,6 +12,7 @@ export function SearchHome() {
   const [search, setSearch] = useState(null)
   const [publications, setPublications] = useState([])
   const user = JSON.parse(localStorage.getItem('user'))
+  const [liked, setLiked] = useState(false)
 
   async function hangleSearch(event) {
     event.preventDefault()
@@ -45,6 +46,7 @@ export function SearchHome() {
         }
         if (item.isFavorite) {
           createFavorite(favorite)
+          handleLike()
         } else {
           removeFavorite(favorite)
         }
@@ -52,6 +54,13 @@ export function SearchHome() {
       pubs.push(item)
     })
     setPublications(pubs)
+  }
+
+  const handleLike = () => {
+    setLiked(true)
+    setTimeout(() => {
+      setLiked(false)
+    }, 1000)
   }
 
   return (
@@ -159,7 +168,7 @@ export function SearchHome() {
                       </div>
 
                       <a
-                        className='lg:h-full lg:w-full'
+                        className='flex items-center justify-center lg:h-full lg:w-full'
                         onDoubleClick={() => {
                           validateFavorite(publication)
                         }}
@@ -169,6 +178,15 @@ export function SearchHome() {
                           src={publication.img}
                           alt={publication.title}
                         />
+                        {liked && (
+                          <div className='absolute h-full w-full flex items-center justify-center'>
+                            <img
+                              className='w-28'
+                              src='/public/svg/like-true.svg'
+                              alt='like'
+                            />
+                          </div>
+                        )}
                       </a>
                       <div className='flex mt-3 px-2 gap-2'>
                         {user !== null ? (

@@ -7,6 +7,7 @@ import { DropdownsPublication } from './DropdownsPublication'
 
 export function ContentHome() {
   const [publications, setPublications] = useState([])
+  const [liked, setLiked] = useState(false)
 
   let user = JSON.parse(localStorage.getItem('user'))
   const navigate = useNavigate()
@@ -21,7 +22,6 @@ export function ContentHome() {
   }
 
   function validateFavorite(publication) {
-    console.log({publication: publication});
     let pubs = []
     publications.forEach((item) => {
       if (item.id === publication.id) {
@@ -31,6 +31,7 @@ export function ContentHome() {
           emailUser: user.email,
         }
         if (item.isFavorite) {
+          handleLike()
           createFavorite(favorite)
         } else {
           removeFavorite(favorite)
@@ -41,6 +42,12 @@ export function ContentHome() {
     setPublications(pubs)
   }
 
+  const handleLike = () => {
+    setLiked(true)
+    setTimeout(() => {
+      setLiked(false)
+    }, 1000)
+  }
 
   return (
     <>
@@ -97,7 +104,7 @@ export function ContentHome() {
                 </div>
                 {user !== null ? (
                   <a
-                    className='lg:h-full lg:w-full'
+                    className='flex items-center justify-center lg:h-full lg:w-full'
                     onDoubleClick={() => {
                       validateFavorite(publication)
                     }}
@@ -107,6 +114,16 @@ export function ContentHome() {
                       src={publication.img}
                       alt={publication.title}
                     />
+
+                    {liked && (
+                      <div className='absolute h-full w-full flex items-center justify-center'>
+                        <img
+                          className='w-28'
+                          src='/public/svg/like-true.svg'
+                          alt='like'
+                        />
+                      </div>
+                    )}
                   </a>
                 ) : (
                   <a
@@ -151,13 +168,15 @@ export function ContentHome() {
                     </Link>
                   )}
 
-                  <a href='#' className='mx-2 text-gray-600 dark:text-gray-300'>
+                  {/* <a 
+                  href='#'
+                  className='mx-2 text-gray-600 dark:text-gray-300'>
                     <img
                       className='w-6 h-6'
                       src='/public/svg/basic-sent.svg'
                       alt=''
                     />
-                  </a>
+                  </a> */}
                 </div>
                 <div className='flex flex-col justify-center px-2 w-full'>
                   <h1 className='mt-4 text-left text-xl font-semibold text-gray-700 '>

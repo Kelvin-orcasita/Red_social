@@ -17,7 +17,7 @@ export const getPublications = async () => {
       let element = result.docs[i].data()
       element.id = result.docs[i].id
       element.fullUser = await getUserFromEmail(element.user)
-      if(user!==null){
+      if (user !== null) {
         element.isFavorite = await isFavorite(element.id, user.email)
       }
       data.push(element)

@@ -13,7 +13,12 @@ function App() {
   let navigate = useNavigate()
 
   let routestAuth = ['/login', '/register']
-  let routesNotAuth = ['/account', '/editprofile', '/createpost', '/editprofile']
+  let routesNotAuth = [
+    '/account',
+    '/editprofile',
+    '/createpost',
+    '/editprofile',
+  ]
 
   useEffect(() => {
     let user = JSON.parse(localStorage.getItem('user'))
@@ -24,7 +29,7 @@ function App() {
     ) {
       navigate('/')
     }
-    
+
     if (
       routesNotAuth.find((p) => p == location.pathname) != null &&
       user == null &&

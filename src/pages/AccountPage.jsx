@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Navbar } from './components/Navbar.jsx'
 import { Link } from 'react-router-dom'
-import ContentHome from './components/ContentHome.jsx'
-import ContentFavorities from './components/ContentFavorities.jsx'
+import ContentMyFavorities from './components/ContentMyFavorities.jsx'
 import ContentMyPublicaciones from './components/ContentMyPublicaciones.jsx'
 import { getMyProfile } from '../firebase/perfil/getProfile.js'
 
@@ -61,7 +60,7 @@ export function AccountPage() {
 
               <div className='flex gap-2 mt-10'>
                 <button
-                  className='py-2 px-6 bg-slate-500 hover:bg-slate-800 text-sm text-white font-bold rounded-xl transition duration-200'
+                  className={`py-2 px-6 border-b-2  hover:bg-slate-800 hover:text-white text-sm text-gray-700 font-bold rounded-xl transition duration-200`}
                   type='button'
                   onClick={() => {
                     setPublications('')
@@ -71,7 +70,7 @@ export function AccountPage() {
                   Publications
                 </button>
 
-                <button
+                {/* <button
                   className='py-2 px-6 bg-slate-500 hover:bg-slate-800 text-sm text-white font-bold rounded-xl transition duration-200'
                   type='button'
                   onClick={() => {
@@ -80,22 +79,16 @@ export function AccountPage() {
                   }}
                 >
                   Favorities
-                </button>
+                </button> */}
               </div>
 
               <div className={`${publications}`}>
-                <b className='block text-gray-700 text-2xl text-center font-bold my-6'>
-                  Publications
-                </b>
                 <ContentMyPublicaciones />
               </div>
 
-              <div className={`${favorities}`}>
-                <b className='block text-gray-700 text-2xl text-center font-bold my-6'>
-                  Favorities
-                </b>
-                <ContentFavorities />
-              </div>
+              {/* <div className={`${favorities}`}>
+                <ContentMyFavorities />
+              </div> */}
             </div>
           </article>
         </section>

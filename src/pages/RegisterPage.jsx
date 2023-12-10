@@ -10,7 +10,7 @@ export function RegisterPage() {
   const form = useRef(null)
   const navigate = useNavigate()
 
- async function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
     if (!form.current) return
     if (form.current.password.value === form.current.repeatPassword.value) {
