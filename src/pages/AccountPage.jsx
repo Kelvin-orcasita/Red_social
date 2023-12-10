@@ -10,7 +10,7 @@ export function AccountPage() {
     JSON.parse(localStorage.getItem('user')),
   )
   const [profile, setProfile] = useState([])
-  const [publications, setPublications] = useState('hidden')
+  const [publications, setPublications] = useState(false)
   const [favorities, setFavorities] = useState('hidden')
 
   useEffect(() => {
@@ -60,10 +60,12 @@ export function AccountPage() {
 
               <div className='flex gap-2 mt-10'>
                 <button
-                  className={`py-2 px-6 border-b-2  hover:bg-slate-800 hover:text-white text-sm text-gray-700 font-bold rounded-xl transition duration-200`}
+                  className={`${
+                    publications && 'bg-slate-800 text-white'
+                  } py-2 px-6 border-b-2  hover:bg-slate-800 hover:text-white text-sm text-gray-700 font-bold rounded-xl transition duration-200`}
                   type='button'
                   onClick={() => {
-                    setPublications('')
+                    setPublications(!publications)
                     setFavorities('hidden')
                   }}
                 >
@@ -82,9 +84,15 @@ export function AccountPage() {
                 </button> */}
               </div>
 
-              <div className={`${publications}`}>
-                <ContentMyPublicaciones />
-              </div>
+              {publications == true ? (
+                <div>
+                  <ContentMyPublicaciones />
+                </div>
+              ) : (
+                <div className='hidden'>
+                  <ContentMyPublicaciones />
+                </div>
+              )}
 
               {/* <div className={`${favorities}`}>
                 <ContentMyFavorities />

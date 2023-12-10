@@ -92,14 +92,7 @@ export function ContentHome() {
                       )}
                     </div>
                   ) : (
-                    <div className='flex justify-end items-center'>
-                      <Link to='/login'>
-                        <img
-                          className='w-6 h-6 rounded-full'
-                          src='/public/svg/options.svg'
-                        />
-                      </Link>
-                    </div>
+                    <></>
                   )}
                 </div>
                 {user !== null ? (
