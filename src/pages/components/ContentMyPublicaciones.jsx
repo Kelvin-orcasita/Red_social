@@ -51,7 +51,7 @@ export function ContentMyPublicaciones() {
     <>
       <section className='bg-white dark:bg-gray-900'>
         <div className='container lg:px-6 mx-auto'>
-          <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-3'>
+          <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-2'>
             {publications.map((publication) => (
               <div
                 key={publication.id}
