@@ -5,7 +5,6 @@ import { Dropdowns } from './Dropdowns'
 
 export function Navbar() {
   const [hiddenBurger, setHiddenBurger] = useState('hidden')
-  const [urlSite, setUrlSite] = useState(window.location.origin+'/')
 
   let location = useLocation()
   let navigate = useNavigate()
@@ -123,7 +122,7 @@ export function Navbar() {
           <img
             title='Search by title'
             className='w-6'
-            src={`/dist/svg/search.svg`}
+            src={`/svg/search.svg`}
             alt='search'
           />
         </Link>
