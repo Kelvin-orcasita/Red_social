@@ -5,12 +5,12 @@ export function HomePage() {
   return (
     <>
       <section>
-        <article className='mb-36'>
+        <article>
           <Navbar />
         </article>
       </section>
 
-      <section className='my-10'>
+      <section className='mt-36'>
         <article>
           <ContentHome />
         </article>
