@@ -163,16 +163,6 @@ export function ContentHome() {
                       />
                     </Link>
                   )}
-
-                  {/* <a 
-                  href='#'
-                  className='mx-2 text-gray-600 dark:text-gray-300'>
-                    <img
-                      className='w-6 h-6'
-                      src='`/svg/basic-sent.svg`
-                      alt=''
-                    />
-                  </a> */}
                 </div>
                 <div className='flex flex-col justify-center px-2 w-full'>
                   <h1 className='mt-4 text-left text-xl font-semibold text-gray-700 '>

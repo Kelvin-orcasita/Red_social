@@ -242,13 +242,10 @@ export function Navbar() {
                               : user.photoURL
                           }
                         />
-                        {user.displayName !== null ? (
-                          <b className='text-sm leading-5'>
-                            {user.displayName}
+                        
+                          <b className='text-sm text-black leading-5'>
+                            {user.displayName==null ? 'Undefined name' : user.displayName}
                           </b>
-                        ) : (
-                          <b className='text-sm leading-5'>Undefined name</b>
-                        )}
                       </div>
                     </Link>
                   ) : (
@@ -257,7 +254,7 @@ export function Navbar() {
                         className='w-10 h-10 rounded-full'
                         src={
                           user.photoURL == null
-                            ? '/public/icons/perfilBlack.png'
+                            ? '/icons/perfilBlack.png'
                             : user.photoURL
                         }
                       />

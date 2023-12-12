@@ -35,7 +35,7 @@ export function AccountPage() {
                 className='1/12 rounded-full'
                 src={
                   profile.urlPhoto == null
-                    ? '/public/icons/perfilBlack.png'
+                    ? '/icons/perfilBlack.png'
                     : profile.urlPhoto
                 }
                 alt='User'
