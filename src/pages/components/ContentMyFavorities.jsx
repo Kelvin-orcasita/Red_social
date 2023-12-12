@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { getMePublications } from '../../firebase/publications/getMePublications.js'
 import { createFavorite } from '../../firebase/favorities/addFavorite.js'
 import { removeFavorite } from '../../firebase/favorities/removeFavorite.js'
 import { DropdownsPublication } from './DropdownsPublication.jsx'

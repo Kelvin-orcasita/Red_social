@@ -3,7 +3,6 @@ import { getMePublications } from '../../firebase/publications/getMePublications
 import { createFavorite } from '../../firebase/favorities/addFavorite.js'
 import { removeFavorite } from '../../firebase/favorities/removeFavorite.js'
 import { DropdownsPublication } from './DropdownsPublication.jsx'
-import { getMeFavorities } from '../../firebase/favorities/getMeFavorities.js'
 
 export function ContentMyPublicaciones() {
   const [publications, setPublications] = useState([])
@@ -67,7 +66,7 @@ export function ContentMyPublicaciones() {
                           publication.fullUser == null ||
                           publication.fullUser.urlPhoto == null ||
                           publication.fullUser.urlPhoto == ''
-                            ? '/public/icons/perfilBlack.png'
+                            ? '/icons/perfilBlack.png'
                             : publication.fullUser.urlPhoto
                         }
                       />
@@ -113,7 +112,7 @@ export function ContentMyPublicaciones() {
                     <div className='absolute h-full w-full flex items-center justify-center'>
                       <img
                         className='w-28'
-                        src='/public/svg/like-true.svg'
+                        src='/svg/like-true.svg'
                         alt='like'
                       />
                     </div>
@@ -131,8 +130,8 @@ export function ContentMyPublicaciones() {
                         className='w-6 h-6 hover:cursor-pointer'
                         src={
                           publication.isFavorite
-                            ? '/public/svg/like-true.svg'
-                            : '/public/svg/like.svg'
+                            ? '/svg/like-true.svg'
+                            : '/svg/like.svg'
                         }
                         alt=''
                       />
@@ -144,27 +143,11 @@ export function ContentMyPublicaciones() {
                     >
                       <img
                         className='w-6 h-6 hover:cursor-pointer'
-                        src='/public/svg/like.svg'
-                        alt=''
+                        src='/svg/like.svg'
+                        alt='like'
                       />
                     </Link>
                   )}
-
-                  {/* <a
-                  href='#'
-                  className='mx-2 text-gray-600 dark:text-gray-300'
-                  
-                >
-                  <img className="w-6 h-6" src="/public/svg/comment.svg" alt="" />
-                </a> */}
-
-                  <a href='#' className='mx-2 text-gray-600 dark:text-gray-300'>
-                    <img
-                      className='w-6 h-6'
-                      src='/public/svg/basic-sent.svg'
-                      alt=''
-                    />
-                  </a>
                 </div>
                 <div className='flex flex-col justify-center px-2 w-full'>
                   <h1 className='mt-4 text-left text-xl font-semibold text-gray-700 '>

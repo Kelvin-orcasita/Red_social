@@ -71,17 +71,6 @@ export function AccountPage() {
                 >
                   Publications
                 </button>
-
-                {/* <button
-                  className='py-2 px-6 bg-slate-500 hover:bg-slate-800 text-sm text-white font-bold rounded-xl transition duration-200'
-                  type='button'
-                  onClick={() => {
-                    setFavorities('')
-                    setPublications('hidden')
-                  }}
-                >
-                  Favorities
-                </button> */}
               </div>
 
               {publications == true ? (
@@ -93,10 +82,6 @@ export function AccountPage() {
                   <ContentMyPublicaciones />
                 </div>
               )}
-
-              {/* <div className={`${favorities}`}>
-                <ContentMyFavorities />
-              </div> */}
             </div>
           </article>
         </section>

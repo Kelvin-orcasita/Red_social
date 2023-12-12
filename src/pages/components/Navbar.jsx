@@ -242,10 +242,12 @@ export function Navbar() {
                               : user.photoURL
                           }
                         />
-                        
-                          <b className='text-sm text-black leading-5'>
-                            {user.displayName==null ? 'Undefined name' : user.displayName}
-                          </b>
+
+                        <b className='text-sm text-black leading-5'>
+                          {user.displayName == null
+                            ? 'Undefined name'
+                            : user.displayName}
+                        </b>
                       </div>
                     </Link>
                   ) : (
