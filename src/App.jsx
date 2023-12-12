@@ -1,5 +1,4 @@
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
-import { HomePage } from './pages/HomePage'
 import { RegisterPage } from './pages/RegisterPage'
 import { LoginPage } from './pages/LoginPage'
 import { AccountPage } from './pages/AccountPage'
@@ -7,6 +6,7 @@ import { CreatePost } from './pages/CreatePost'
 import { EditProfile } from './pages/EditProfile'
 import { useEffect } from 'react'
 import { SearchHome } from './pages/components/SearchHome'
+import ContentHome from './pages/components/ContentHome'
 
 function App() {
   let location = useLocation()
@@ -41,8 +41,8 @@ function App() {
 
   return (
     <Routes>
-      <Route path='/' element={<HomePage />} />
-      <Route path='/home' element={<HomePage />} />
+      <Route path='/' element={<ContentHome />} />
+      <Route path='/home' element={<ContentHome />} />
       <Route path='/register' element={<RegisterPage />} />
       <Route path='/login' element={<LoginPage />} />
       <Route path='/account' element={<AccountPage />} />

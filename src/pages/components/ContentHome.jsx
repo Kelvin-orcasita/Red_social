@@ -4,6 +4,7 @@ import { getPublications } from '../../firebase/publications/getPublication'
 import { createFavorite } from '../../firebase/favorities/addFavorite'
 import { removeFavorite } from '../../firebase/favorities/removeFavorite'
 import { DropdownsPublication } from './DropdownsPublication'
+import { Navbar } from './Navbar'
 
 export function ContentHome() {
   const [publications, setPublications] = useState([])
@@ -51,7 +52,8 @@ export function ContentHome() {
 
   return (
     <>
-      <section className='snap-y snap-mandatory h-screen overflow-scroll'>
+      <Navbar />
+      <section className='snap-y snap-mandatory h-screen overflow-scroll mt-32'>
         <div className='container lg:px-6 mx-auto'>
           <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-2'>
             {publications.map((publication) => (

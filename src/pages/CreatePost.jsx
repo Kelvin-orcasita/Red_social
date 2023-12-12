@@ -47,7 +47,7 @@ export function CreatePost() {
 
   return (
     <>
-      <div className='mb-10'>
+      <div className=''>
         <Navbar />
       </div>
       {
