@@ -5,7 +5,7 @@ import { Dropdowns } from './Dropdowns'
 
 export function Navbar() {
   const [hiddenBurger, setHiddenBurger] = useState('hidden')
-  const [variable, setvariable] = useState(window.location)
+  const [urlSite, setUrlSite] = useState(window.location.origin+'/')
 
   let location = useLocation()
   let navigate = useNavigate()
@@ -13,7 +13,7 @@ export function Navbar() {
 
   useEffect(() => {
     setHiddenBurger('hidden')
-    console.log(variable.href);
+    setUrlSite(urlSite)
   }, [])
 
   function handleCloseBurger() {
@@ -123,7 +123,7 @@ export function Navbar() {
           <img
             title='Search by title'
             className='w-6'
-            src='http://localhost:5173/public/svg/search.svg'
+            src={`${urlSite}/public/svg/search.svg`}
             alt='search'
           />
         </Link>
@@ -240,7 +240,7 @@ export function Navbar() {
                           className='w-10 h-10 rounded-full'
                           src={
                             user.photoURL == null
-                              ? '/public/icons/perfilBlack.png'
+                              ? `${urlSite}/public/icons/perfilBlack.png`
                               : user.photoURL
                           }
                         />

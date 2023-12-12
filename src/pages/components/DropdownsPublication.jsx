@@ -7,6 +7,8 @@ import { getPublications } from '../../firebase/publications/getPublication'
 export function DropdownsPublication(idPublication) {
   const user = JSON.parse(localStorage.getItem('user'))
   const [publications, setPublications] = useState([])
+  const [urlSite, setUrlSite] = useState(window.location.origin+'/')
+
 
   useEffect(() => {
     getMyPublications()
@@ -45,7 +47,7 @@ export function DropdownsPublication(idPublication) {
           >
             <img
               className='w-6 h-6 rounded-full'
-              src='/public/svg/options.svg'
+              src={`${urlSite}/public/svg/options.svg`}
             />
           </button>
 
@@ -65,7 +67,7 @@ export function DropdownsPublication(idPublication) {
                 >
                   <img
                     className='w-4'
-                    src='/public/svg/close.svg'
+                    src={`${urlSite}/public/svg/close.svg`}
                     alt='close'
                   />
                   Delete publication

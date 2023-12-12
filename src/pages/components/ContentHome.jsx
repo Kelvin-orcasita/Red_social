@@ -9,6 +9,8 @@ import { Navbar } from './Navbar'
 export function ContentHome() {
   const [publications, setPublications] = useState([])
   const [liked, setLiked] = useState(false)
+  const [urlSite, setUrlSite] = useState(window.location.origin+'/')
+
 
   let user = JSON.parse(localStorage.getItem('user'))
   const navigate = useNavigate()
@@ -71,7 +73,7 @@ export function ContentHome() {
                           publication.fullUser == null ||
                           publication.fullUser.urlPhoto == null ||
                           publication.fullUser.urlPhoto == ''
-                            ? '/public/icons/perfilBlack.png'
+                            ? `${urlSite}/public/icons/perfilBlack.png`
                             : publication.fullUser.urlPhoto
                         }
                       />
@@ -114,7 +116,7 @@ export function ContentHome() {
                       <div className='absolute h-full w-full flex items-center justify-center'>
                         <img
                           className='w-28'
-                          src='/public/svg/like-true.svg'
+                          src={`${urlSite}/public/svg/like-true.svg`}
                           alt='like'
                         />
                       </div>
@@ -144,8 +146,8 @@ export function ContentHome() {
                         className='w-6 h-6 hover:cursor-pointer'
                         src={
                           publication.isFavorite
-                            ? '/public/svg/like-true.svg'
-                            : '/public/svg/like.svg'
+                            ? `${urlSite}/public/svg/like-true.svg`
+                            : `${urlSite}/public/svg/like.svg`
                         }
                         alt=''
                       />
@@ -157,7 +159,7 @@ export function ContentHome() {
                     >
                       <img
                         className='w-6 h-6 hover:cursor-pointer'
-                        src='/public/svg/like.svg'
+                        src={`${urlSite}/public/svg/like.svg`}
                         alt=''
                       />
                     </Link>
@@ -168,7 +170,7 @@ export function ContentHome() {
                   className='mx-2 text-gray-600 dark:text-gray-300'>
                     <img
                       className='w-6 h-6'
-                      src='/public/svg/basic-sent.svg'
+                      src='`${urlSite}/public/svg/basic-sent.svg`
                       alt=''
                     />
                   </a> */}
