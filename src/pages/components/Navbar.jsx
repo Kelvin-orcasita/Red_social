@@ -123,7 +123,7 @@ export function Navbar() {
           <img
             title='Search by title'
             className='w-6'
-            src={`${urlSite}/public/svg/search.svg`}
+            src={`/dist/svg/search.svg`}
             alt='search'
           />
         </Link>
