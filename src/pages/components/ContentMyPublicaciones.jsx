@@ -49,13 +49,13 @@ export function ContentMyPublicaciones() {
 
   return (
     <>
-      <section className='bg-white dark:bg-gray-900'>
+      <section className='snap-y snap-mandatory sm:h-screen sm:overflow-scroll lg:overflow-hidden lg:h-full'>
         <div className='container lg:px-6 mx-auto'>
           <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-2'>
             {publications.map((publication) => (
               <div
                 key={publication.id}
-                className='flex flex-col items-start lg:p-2 group bg-gray-100 rounded-xl'
+                className='flex flex-col items-start lg:p-2 group bg-gray-100 rounded-xl snap-start'
               >
                 <div className='flex items-center px-1 pb-1 w-full'>
                   <div className='flex justify-normal items-center w-full'>

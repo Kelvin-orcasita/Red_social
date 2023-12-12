@@ -47,13 +47,13 @@ export function CreatePost() {
 
   return (
     <>
-      <div className=''>
+      <div>
         <Navbar />
       </div>
       {
         <section>
           <article>
-            <div className='lg:flex justify-center h-screen items-center bg-slate-200'>
+            <div className='lg:flex justify-center h-screen items-center bg-slate-200 mt-24'>
               <div className='w-full max-w-2xl'>
                 <form
                   className='bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4'

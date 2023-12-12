@@ -10,7 +10,6 @@ export function ContentHome() {
   const [publications, setPublications] = useState([])
   const [liked, setLiked] = useState(false)
 
-
   let user = JSON.parse(localStorage.getItem('user'))
   const navigate = useNavigate()
 
@@ -54,7 +53,7 @@ export function ContentHome() {
   return (
     <>
       <Navbar />
-      <section className='snap-y snap-mandatory h-screen overflow-scroll mt-32'>
+      <section className='snap-y snap-mandatory sm:h-screen sm:overflow-scroll lg:overflow-hidden lg:h-full mt-32'>
         <div className='container lg:px-6 mx-auto'>
           <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-2'>
             {publications.map((publication) => (
