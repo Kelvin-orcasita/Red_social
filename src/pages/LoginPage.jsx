@@ -153,7 +153,7 @@ export function LoginPage() {
                     <img
                       title='Log in. Use your Google account'
                       className='w-6 '
-                      src='/public/icons/google.png'
+                      src='/icons/google.png'
                       alt='Google'
                     />
                     <p className=''>Sign in with Google</p>
