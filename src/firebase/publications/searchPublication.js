@@ -16,7 +16,7 @@ export const db = getFirestore(app)
 
 export const searchPublication = async (search) => {
   try {
-    let searchInput = search.search.trim()
+    let searchInput = search.search.trim().toLowerCase()
     if (searchInput !== '') {
       const ref = collection(db, 'publications')
       const q = query(ref, where('title', '==', `${searchInput}`))

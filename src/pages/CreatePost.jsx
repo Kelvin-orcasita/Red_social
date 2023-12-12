@@ -23,7 +23,7 @@ export function CreatePost() {
       const result = await createPublication({
         user: user.email,
         img: base64,
-        title: form.current.title.value,
+        title: form.current.title.value.toLowerCase(),
         description: form.current.description.value,
         date: new Date(),
       })

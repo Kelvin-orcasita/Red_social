@@ -150,8 +150,8 @@ export function Navbar() {
         id='navMenu'
         className={`navbar-menu relative z-50 lg:hidden ${hiddenBurger}`}
       >
-        <div className='navbar-backdrop fixed inset-0 bg-gray-800 opacity-25'></div>
-        <nav className='fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto'>
+        <div className='navbar-backdrop fixed inset-0 bg-gray-800'></div>
+        <nav className='fixed top-0 left-0 bottom-0 flex flex-col max-w-sm py-6 px-6 bg-white border-r overflow-y-auto w-full'>
           <div className='flex items-center gap-8 mb-8'>
             <Link className='mr-auto text-3xl font-bold leading-none' to='/'>
               People

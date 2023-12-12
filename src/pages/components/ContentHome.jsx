@@ -164,7 +164,7 @@ export function ContentHome() {
                   )}
                 </div>
                 <div className='flex flex-col justify-center px-2 w-full'>
-                  <h1 className='mt-4 text-left text-xl font-semibold text-gray-700 '>
+                  <h1 className='mt-4 text-left text-xl font-semibold text-gray-700 capitalize'>
                     {publication.title}
                   </h1>
                   <p className='mt-2 text-gray-500 px-2 text-left text-sm  text-ellipsis'>
