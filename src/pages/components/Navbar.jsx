@@ -12,7 +12,6 @@ export function Navbar() {
 
   useEffect(() => {
     setHiddenBurger('hidden')
-    setUrlSite(urlSite)
   }, [])
 
   function handleCloseBurger() {
@@ -239,7 +238,7 @@ export function Navbar() {
                           className='w-10 h-10 rounded-full'
                           src={
                             user.photoURL == null
-                              ? `${urlSite}/public/icons/perfilBlack.png`
+                              ? `/icons/perfilBlack.png`
                               : user.photoURL
                           }
                         />
