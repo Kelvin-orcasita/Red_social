@@ -46,7 +46,7 @@ export function Dropdowns() {
                 className='w-10 h-10 rounded-full'
                 src={
                   profile.urlPhoto == null
-                    ? '/public/icons/perfil.png'
+                    ? '/icons/perfil.png'
                     : profile.urlPhoto
                 }
               />
@@ -77,7 +77,7 @@ export function Dropdowns() {
                     className='text-gray-700 hover:text-blue-600 flex gap-2 w-full px-4 py-2 text-sm leading-5 text-left'
                     role='menuitem'
                   >
-                    <img className='w-4' src='/public/svg/account.svg' alt='' />
+                    <img className='w-4' src='/svg/account.svg' alt='' />
                     Account
                   </Link>
                   <a
@@ -86,7 +86,7 @@ export function Dropdowns() {
                     className='text-gray-700 hover:text-blue-600 flex gap-2 w-full px-4 py-2 text-sm leading-5 text-left'
                     role='menuitem'
                   >
-                    <img className='w-4' src='/public/svg/bell.svg' alt='' />
+                    <img className='w-4' src='/svg/bell.svg' alt='' />
                     Notifications
                   </a>
                   <hr />
@@ -98,7 +98,7 @@ export function Dropdowns() {
                     className='text-gray-700 hover:text-blue-600 flex gap-2 w-full px-4 py-2 text-sm leading-5 text-left'
                     role='menuitem'
                   >
-                    <img className='w-4' src='/public/svg/exit.svg' alt='' />
+                    <img className='w-4' src='/svg/exit.svg' alt='' />
                     Sign out
                   </button>
                 </div>
