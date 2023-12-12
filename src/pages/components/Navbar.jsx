@@ -5,12 +5,15 @@ import { Dropdowns } from './Dropdowns'
 
 export function Navbar() {
   const [hiddenBurger, setHiddenBurger] = useState('hidden')
+  const [variable, setvariable] = useState(window.location)
+
   let location = useLocation()
   let navigate = useNavigate()
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
 
   useEffect(() => {
     setHiddenBurger('hidden')
+    console.log(variable.href);
   }, [])
 
   function handleCloseBurger() {
@@ -120,7 +123,7 @@ export function Navbar() {
           <img
             title='Search by title'
             className='w-6'
-            src='/public/svg/search.svg'
+            src='http://localhost:5173/public/svg/search.svg'
             alt='search'
           />
         </Link>
