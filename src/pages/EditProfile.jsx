@@ -75,7 +75,7 @@ export function EditProfile() {
                     profile can see the information you add here.
                   </p>
                   <label className='block text-gray-700 text-sm font-bold mb-2'>
-                    Fhoto
+                    Photo
                   </label>
 
                   <div className='mb-4 flex gap-2'>

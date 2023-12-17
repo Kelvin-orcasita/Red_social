@@ -32,7 +32,7 @@ export function AccountPage() {
           <article>
             <div className='flex flex-col justify-center items-center py-20'>
               <img
-                className='1/12 rounded-full'
+                className='w-28 rounded-full'
                 src={
                   profile.urlPhoto == null
                     ? '/icons/perfilBlack.png'
