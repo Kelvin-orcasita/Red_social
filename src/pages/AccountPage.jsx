@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import ContentMyFavorities from './components/ContentMyFavorities.jsx'
 import ContentMyPublicaciones from './components/ContentMyPublicaciones.jsx'
 import { getMyProfile } from '../firebase/perfil/getProfile.js'
+import { Loading } from './components/Loading.jsx'
 
 export function AccountPage() {
   const [currentUser, setCurrentUser] = useState(
@@ -27,7 +28,11 @@ export function AccountPage() {
       <div className='mb-20'>
         <Navbar />
       </div>
-      {
+      {profile == '' ? (
+        <div className='mt-48'>
+          <Loading />
+        </div>
+      ) : (
         <section>
           <article>
             <div className='flex flex-col justify-center items-center py-20'>
@@ -85,7 +90,7 @@ export function AccountPage() {
             </div>
           </article>
         </section>
-      }
+      )}
     </>
   )
 }
