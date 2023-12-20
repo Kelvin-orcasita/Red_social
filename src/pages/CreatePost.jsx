@@ -2,10 +2,12 @@ import { useRef, useState } from 'react'
 import { Navbar } from './components/Navbar.jsx'
 import { createPublication } from '../firebase/publications/createPublication.js'
 import { useNavigate } from 'react-router-dom'
+import { Loading } from './components/Loading.jsx'
 
 export function CreatePost() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
   const [file, setFile] = useState(null)
+  const [ViewLoading, setViewLoading] = useState(false)
   const [error, setError] = useState('')
   const navigate = useNavigate()
   const form = useRef(null)
@@ -19,6 +21,7 @@ export function CreatePost() {
       return setError('You must add a title')
     }
     if (file.size < 1048487) {
+      setViewLoading(true)
       let base64 = await toBase64(file)
       const result = await createPublication({
         user: user.email,
@@ -184,12 +187,13 @@ export function CreatePost() {
                   </div>
                   <div className='flex items-center justify-end mt-6'>
                     <button
-                      className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+                      className='flex items-center gap-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
                       type='submit'
                       // disabled={!file && true}
                       onClick={handleSubmit}
                     >
                       Publish
+                      {ViewLoading == true && <Loading />}
                     </button>
                   </div>
                 </form>

@@ -2,17 +2,24 @@ import { useEffect, useState } from 'react'
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { getAuth, signOut } from 'firebase/auth'
 import { Dropdowns } from './Dropdowns'
+import { getMyProfile } from '../../firebase/perfil/getProfile'
 
 export function Navbar() {
   const [hiddenBurger, setHiddenBurger] = useState('hidden')
-
+  const [profile, setProfile] = useState([])
   let location = useLocation()
   let navigate = useNavigate()
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
 
   useEffect(() => {
     setHiddenBurger('hidden')
+    if (user !== null) getMyProfileSesion()
   }, [])
+
+  async function getMyProfileSesion() {
+    const _profile = await getMyProfile()
+    setProfile(_profile)
+  }
 
   function handleCloseBurger() {
     if (hiddenBurger == 'hidden') {
@@ -42,7 +49,10 @@ export function Navbar() {
         id='navMenu'
         className='px-4 py-6 flex justify-between items-center bg-slate-950'
       >
-        <Link className='text-3xl font-bold leading-none text-white' to='/'>
+        <Link
+          className='hidden lg:inline-block text-3xl font-bold leading-none text-white'
+          to='/'
+        >
           People
         </Link>
 
@@ -191,18 +201,24 @@ export function Navbar() {
 
                   <li className='mb-1'>
                     <Link
-                      className='block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded'
+                      className='p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded flex items-center gap-2'
                       to='/'
                     >
+                      <img className='w-4' src='/svg/house.svg' alt='home' />
                       Home
                     </Link>
                   </li>
 
                   <li className='mb-1'>
                     <Link
-                      className='block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded'
+                      className='p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded flex items-center gap-2'
                       to='/account'
                     >
+                      <img
+                        className='w-4'
+                        src='/svg/account.svg'
+                        alt='account'
+                      />
                       Account
                     </Link>
                   </li>
@@ -231,36 +247,25 @@ export function Navbar() {
                 </div>
               ) : (
                 <div>
-                  {user !== null ? (
+                  {user !== null && (
                     <Link to='/account'>
                       <div className='flex items-center gap-3'>
                         <img
                           className='w-10 h-10 rounded-full'
                           src={
-                            user.photoURL == null
-                              ? `/icons/perfilBlack.png`
-                              : user.photoURL
+                            profile == null
+                              ? '/icons/perfilBlack.png'
+                              : profile.urlPhoto
                           }
                         />
 
                         <b className='text-sm text-black leading-5'>
-                          {user.displayName == null
+                          {profile.name == null
                             ? 'Undefined name'
-                            : user.displayName}
+                            : profile.name}
                         </b>
                       </div>
                     </Link>
-                  ) : (
-                    <div>
-                      <img
-                        className='w-10 h-10 rounded-full'
-                        src={
-                          user.photoURL == null
-                            ? '/icons/perfilBlack.png'
-                            : user.photoURL
-                        }
-                      />
-                    </div>
                   )}
 
                   <div className='flex justify-center mt-6 '>

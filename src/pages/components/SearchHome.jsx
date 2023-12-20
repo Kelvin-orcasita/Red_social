@@ -133,7 +133,7 @@ export function SearchHome() {
                                 publication.fullUser == null ||
                                 publication.fullUser.urlPhoto == null ||
                                 publication.fullUser.urlPhoto == ''
-                                  ? '/public/icons/perfilBlack.png'
+                                  ? '/icons/perfilBlack.png'
                                   : publication.fullUser.urlPhoto
                               }
                             />
@@ -160,7 +160,7 @@ export function SearchHome() {
                             <Link to='/login'>
                               <img
                                 className='w-6 h-6 rounded-full'
-                                src='/public/svg/options.svg'
+                                src='/svg/options.svg'
                               />
                             </Link>
                           </div>
@@ -182,7 +182,7 @@ export function SearchHome() {
                           <div className='absolute h-full w-full flex items-center justify-center'>
                             <img
                               className='w-28'
-                              src='/public/svg/like-true.svg'
+                              src='/svg/like-true.svg'
                               alt='like'
                             />
                           </div>
@@ -200,8 +200,8 @@ export function SearchHome() {
                               className='w-6 h-6 hover:cursor-pointer'
                               src={
                                 publication.isFavorite
-                                  ? '/public/svg/like-true.svg'
-                                  : '/public/svg/like.svg'
+                                  ? '/svg/like-true.svg'
+                                  : '/svg/like.svg'
                               }
                               alt=''
                             />
@@ -213,7 +213,7 @@ export function SearchHome() {
                           >
                             <img
                               className='w-6 h-6 hover:cursor-pointer'
-                              src='/public/svg/like.svg'
+                              src='/svg/like.svg'
                               alt=''
                             />
                           </Link>

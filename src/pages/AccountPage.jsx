@@ -29,7 +29,7 @@ export function AccountPage() {
         <Navbar />
       </div>
       {profile == '' ? (
-        <div className='mt-48'>
+        <div className='mt-48 flex items-center justify-center'>
           <Loading />
         </div>
       ) : (
@@ -67,7 +67,7 @@ export function AccountPage() {
                 <button
                   className={`${
                     publications && 'bg-slate-800 text-white'
-                  } py-2 px-6 border-b-2  hover:bg-slate-800 hover:text-white text-sm text-gray-700 font-bold rounded-xl transition duration-200`}
+                  } py-2 px-6 border-b-2  hover:bg-slate-800 text-sm text-gray-700 font-bold rounded-xl transition duration-200`}
                   type='button'
                   onClick={() => {
                     setPublications(!publications)

@@ -55,10 +55,10 @@ export function DropdownsPublication(idPublication) {
                 <button
                   onClick={() => handleDeletePublication(idPublication.id)}
                   tabIndex='0'
-                  className='text-gray-700 hover:text-red-700 flex gap-2 w-full px-4 py-2 text-sm leading-5 text-left'
+                  className='text-gray-700 hover:text-red-700 flex items-center gap-2 w-full px-4 py-2 text-sm leading-5 text-left '
                   role='menuitem'
                 >
-                  <img className='w-4' src={`/svg/close.svg`} alt='close' />
+                  <img className='w-4' src={`/svg/delete.svg`} alt='close' />
                   Delete publication
                 </button>
               </div>

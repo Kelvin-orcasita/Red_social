@@ -15,7 +15,6 @@ export function ContentHome() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    console.log(publications)
     getPublicationsAll()
   }, [])
 
@@ -57,7 +56,7 @@ export function ContentHome() {
       <Navbar />
 
       {publications == '' ? (
-        <div className='mt-48'>
+        <div className='mt-48 flex items-center justify-center'>
           <Loading />
         </div>
       ) : (
