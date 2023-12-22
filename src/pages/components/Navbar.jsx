@@ -47,7 +47,7 @@ export function Navbar() {
     <>
       <nav
         id='navMenu'
-        className='px-4 py-6 flex justify-between items-center bg-slate-950'
+        className='px-4 py-4 lg:py-6 flex items-center bg-slate-950'
       >
         <Link
           className='hidden lg:inline-block text-3xl font-bold leading-none text-white'
@@ -71,88 +71,92 @@ export function Navbar() {
             </svg>
           </a>
         </div>
+        <div className='flex justify-end items-center gap-4 w-full'>
+          <ul className='hidden lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6'>
+            {user !== null ? (
+              <>
+                {location.pathname !== '/createpost' && (
+                  <Link
+                    className='hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200'
+                    to='/createpost'
+                  >
+                    Create Post
+                  </Link>
+                )}
 
-        <ul className='hidden lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6'>
-          {user !== null ? (
-            <>
-              {location.pathname !== '/createpost' && (
-                <Link
-                  className='hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200'
-                  to='/createpost'
-                >
-                  Create Post
-                </Link>
-              )}
+                <li>
+                  <Link
+                    className={`text-sm font-semibol ${
+                      location.pathname == '/'
+                        ? 'text-blue-600'
+                        : 'text-gray-400'
+                    } hover:text-blue-600 rounded`}
+                    to='/'
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li className='text-gray-300'>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    fill='none'
+                    stroke='currentColor'
+                    className='w-4 h-4 current-fill'
+                    viewBox='0 0 24 24'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth='2'
+                      d='M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z'
+                    />
+                  </svg>
+                </li>
+                <li>
+                  <Link
+                    className={`text-sm font-semibol ${
+                      location.pathname == '/account'
+                        ? 'text-blue-600'
+                        : 'text-gray-400'
+                    } hover:text-blue-600 rounded`}
+                    to='/account'
+                  >
+                    Account
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <></>
+            )}
+          </ul>
+          <Link className='lg:me-10' to='/search'>
+            <img
+              title='Search by title'
+              className='w-6'
+              src={`/svg/search.svg`}
+              alt='search'
+            />
+          </Link>
 
-              <li>
-                <Link
-                  className={`text-sm font-semibol ${
-                    location.pathname == '/' ? 'text-blue-600' : 'text-gray-400'
-                  } hover:text-blue-600 rounded`}
-                  to='/'
-                >
-                  Home
-                </Link>
-              </li>
-              <li className='text-gray-300'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  stroke='currentColor'
-                  className='w-4 h-4 current-fill'
-                  viewBox='0 0 24 24'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth='2'
-                    d='M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z'
-                  />
-                </svg>
-              </li>
-              <li>
-                <Link
-                  className={`text-sm font-semibol ${
-                    location.pathname == '/account'
-                      ? 'text-blue-600'
-                      : 'text-gray-400'
-                  } hover:text-blue-600 rounded`}
-                  to='/account'
-                >
-                  Account
-                </Link>
-              </li>
-            </>
-          ) : (
-            <></>
+          {user == null && (
+            <div className='lg:flex lg:items-center lg:gap-2'>
+              <Link
+                className='hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200'
+                to='/login'
+              >
+                Sign In
+              </Link>
+              <Link
+                className='hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200'
+                to='/register'
+              >
+                Sign up
+              </Link>
+            </div>
           )}
-        </ul>
-        <Link className='lg:me-10' to='/search'>
-          <img
-            title='Search by title'
-            className='w-6'
-            src={`/svg/search.svg`}
-            alt='search'
-          />
-        </Link>
-        {user == null && (
-          <div className='lg:flex lg:items-center lg:gap-2'>
-            <Link
-              className='hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200'
-              to='/login'
-            >
-              Sign In
-            </Link>
-            <Link
-              className='hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200'
-              to='/register'
-            >
-              Sign up
-            </Link>
-          </div>
-        )}
 
-        {user !== undefined && user !== null && <Dropdowns />}
+          {user !== undefined && user !== null && <Dropdowns />}
+        </div>
       </nav>
 
       {/* menu burger	 */}
