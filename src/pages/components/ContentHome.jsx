@@ -80,9 +80,11 @@ export function ContentHome() {
                       <div className='flex justify-normal items-center w-full'>
                         {
                           <button
-                            onClick={() =>
-                              handleProfileUsers(publication.fullUser)
-                            }
+                            onClick={() => {
+                              user.email == publication.user
+                                ? navigate('account')
+                                : handleProfileUsers(publication.fullUser)
+                            }}
                           >
                             <img
                               id='fhotoProfile'
