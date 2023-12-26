@@ -1,15 +1,6 @@
 import { initializeApp } from 'firebase/app'
-import {
-  getFirestore,
-  collection,
-  deleteDoc,
-  doc,
-  query,
-  where,
-  getDocs,
-} from 'firebase/firestore'
+import { getFirestore, deleteDoc, doc } from 'firebase/firestore'
 import { firebaseConfig } from '../../config.js'
-import { reload } from 'firebase/auth'
 
 const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)

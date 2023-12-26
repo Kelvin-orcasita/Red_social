@@ -10,7 +10,7 @@ import ProfileUsersPage from '../ProfileUsers'
 
 export function ContentHome() {
   const [publications, setPublications] = useState([])
-  const [profile, setProfile] = useState([])
+  const [profile, setProfile] = useState('')
   const [liked, setLiked] = useState(false)
 
   let user = JSON.parse(localStorage.getItem('user'))
@@ -53,8 +53,8 @@ export function ContentHome() {
     }, 1000)
   }
 
-  function handleProfileUsers(publication) {
-    setProfile(publication)
+  async function handleProfileUsers(user) {
+    setProfile(user)
   }
 
   return (
@@ -68,6 +68,7 @@ export function ContentHome() {
       ) : (
         <section className='snap-y snap-mandatory h-screen overflow-scroll lg:overflow-hidden lg:h-full mt-24 lg:mt-14'>
           <div className='container lg:px-6 mx-auto'>
+            {profile !== '' && <ProfileUsersPage users={profile} />}
             <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-2'>
               {publications.map((publication) => (
                 <div
@@ -79,9 +80,9 @@ export function ContentHome() {
                       <div className='flex justify-normal items-center w-full'>
                         {
                           <button
-                            onClick={() => {
-                              ;() => handleProfileUsers(publication)
-                            }}
+                            onClick={() =>
+                              handleProfileUsers(publication.fullUser)
+                            }
                           >
                             <img
                               id='fhotoProfile'

@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Navbar } from './components/Navbar.jsx'
 import { Link } from 'react-router-dom'
-import ContentMyFavorities from './components/ContentMyFavorities.jsx'
-import ContentMyPublicaciones from './components/ContentMyPublicaciones.jsx'
+import ContentMyPublications from './components/ContentMyPublications.jsx'
 import { getMyProfile } from '../firebase/perfil/getProfile.js'
 import { Loading } from './components/Loading.jsx'
 
@@ -35,7 +34,7 @@ export function AccountPage() {
       ) : (
         <section>
           <article>
-            <div className='flex flex-col justify-center items-center py-20'>
+            <div className='flex flex-col justify-center items-center py-14'>
               <img
                 className='w-28 rounded-full'
                 src={
@@ -54,7 +53,7 @@ export function AccountPage() {
 
               <p className='px-8'>{profile.info}</p>
 
-              <div className='my-10'>
+              <div className='mt-10'>
                 <Link
                   className='py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200'
                   to='/editprofile'
@@ -63,7 +62,7 @@ export function AccountPage() {
                 </Link>
               </div>
 
-              <div className='flex gap-2 mt-10'>
+              <div className='flex gap-2 mt-8'>
                 <button
                   className={`${
                     publications && 'bg-slate-800 text-white'
@@ -80,11 +79,11 @@ export function AccountPage() {
 
               {publications == true ? (
                 <div>
-                  <ContentMyPublicaciones />
+                  <ContentMyPublications />
                 </div>
               ) : (
                 <div className='hidden'>
-                  <ContentMyPublicaciones />
+                  <ContentMyPublications />
                 </div>
               )}
             </div>

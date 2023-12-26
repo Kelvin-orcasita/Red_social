@@ -6,6 +6,7 @@ import { CreatePost } from './pages/CreatePost'
 import { EditProfile } from './pages/EditProfile'
 import { useEffect } from 'react'
 import { SearchHome } from './pages/components/SearchHome'
+import { ProfileData } from './pages/ProfileData'
 import ContentHome from './pages/components/ContentHome'
 import ProfileUsersPage from './pages/ProfileUsers'
 
@@ -19,6 +20,7 @@ function App() {
     '/editprofile',
     '/createpost',
     '/editprofile',
+    'profiledata',
   ]
 
   useEffect(() => {
@@ -46,6 +48,7 @@ function App() {
       <Route path='/home' element={<ContentHome />} />
       <Route path='/register' element={<RegisterPage />} />
       <Route path='/login' element={<LoginPage />} />
+      <Route path='/profiledata' element={<ProfileData />} />
       <Route path='/account' element={<AccountPage />} />
       <Route path='/editprofile' element={<EditProfile />} />
       <Route path='/createpost' element={<CreatePost />} />

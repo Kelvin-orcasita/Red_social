@@ -141,7 +141,6 @@ export function CreatePost() {
                           name='title'
                           type='text'
                           placeholder='Titulo'
-                          // disabled={!file && true}
                         />
                       </div>
 
@@ -157,7 +156,6 @@ export function CreatePost() {
                           rows='4'
                           className='block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                           name='description'
-                          // disabled={!file && true}
                           placeholder='Write your information here...'
                         ></textarea>
                       </div>
@@ -189,7 +187,7 @@ export function CreatePost() {
                     <button
                       className='flex items-center gap-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
                       type='submit'
-                      // disabled={!file && true}
+                      disabled={!file && true}
                       onClick={handleSubmit}
                     >
                       Publish

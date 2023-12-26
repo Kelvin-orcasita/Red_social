@@ -4,17 +4,15 @@ import { auth } from '../firebase/google/register.js'
 import { useNavigate, Link } from 'react-router-dom'
 import { Navbar } from './components/Navbar.jsx'
 
-import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  reload,
-} from 'firebase/auth'
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { getByEmail } from '../firebase/users/getAll.js'
 import { registerUser } from '../firebase/users/register.js'
+import { getMyProfile } from '../firebase/perfil/getProfile.js'
 const provider = new GoogleAuthProvider()
 
 export function LoginPage() {
+  const [profile, setProfile] = useState([])
+
   const form = useRef(null)
   const [messageError, setMessageError] = useState('')
   const navigate = useNavigate()
@@ -34,8 +32,12 @@ export function LoginPage() {
     if (result == null) {
       return setMessageError('Credentials are not valid')
     }
-
     localStorage.setItem('user', JSON.stringify(result.user))
+    const _profile = await getMyProfile()
+    setProfile(_profile)
+    if (_profile.name == 'Undefined name') {
+      return navigate('/profiledata')
+    }
     navigate('/')
     return
   }

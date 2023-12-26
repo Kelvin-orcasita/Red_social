@@ -4,7 +4,7 @@ import { createFavorite } from '../../firebase/favorities/addFavorite.js'
 import { removeFavorite } from '../../firebase/favorities/removeFavorite.js'
 import { DropdownsPublication } from './DropdownsPublication.jsx'
 
-export function ContentMyPublicaciones() {
+export function ContentMyPublications() {
   const [publications, setPublications] = useState([])
   const user = JSON.parse(localStorage.getItem('user'))
   const [liked, setLiked] = useState(false)
@@ -170,4 +170,4 @@ export function ContentMyPublicaciones() {
   )
 }
 
-export default ContentMyPublicaciones
+export default ContentMyPublications

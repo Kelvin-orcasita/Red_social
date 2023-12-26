@@ -6,7 +6,6 @@ import { registerUser } from '../firebase/users/register.js'
 
 export function RegisterPage() {
   const [messageError, serMessageError] = useState('')
-  const [currentUser, setCurrentUser] = useState(null)
   const form = useRef(null)
   const navigate = useNavigate()
 
