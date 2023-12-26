@@ -32,11 +32,11 @@ export function Dropdowns() {
 
   return (
     <>
-      <div className='bg-white flex flex-col justify-center'>
+      <div className='flex flex-col justify-center'>
         <div className='flex items-center justify-center '>
           <div className='inline-block text-left  dropdown'>
             <button
-              className='inline-flex bg-slate-950 justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150'
+              className='inline-flex justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150'
               type='button'
               aria-haspopup='true'
               aria-expanded='true'

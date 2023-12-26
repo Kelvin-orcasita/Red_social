@@ -6,13 +6,16 @@ import { createFavorite } from '../../firebase/favorities/addFavorite.js'
 import { removeFavorite } from '../../firebase/favorities/removeFavorite.js'
 import { DropdownsPublication } from './DropdownsPublication.jsx'
 import { getPublications } from '../../firebase/publications/getPublication.js'
+import ProfileUsersPage from '../ProfileUsers.jsx'
 
 export function SearchHome() {
   const form = useRef(null)
   const [search, setSearch] = useState(null)
   const [publications, setPublications] = useState([])
+  const [profile, setProfile] = useState('')
   const user = JSON.parse(localStorage.getItem('user'))
   const [liked, setLiked] = useState(false)
+  const navigate = useNavigate()
 
   async function hangleSearch(event) {
     event.preventDefault()
@@ -63,6 +66,10 @@ export function SearchHome() {
     }, 1000)
   }
 
+  function handleProfileUsers(user) {
+    setProfile(user)
+  }
+
   return (
     <>
       <div className='mb-32'>
@@ -102,6 +109,7 @@ export function SearchHome() {
       ) : (
         <section>
           <article className='grid grid-cols-1 gap-8 mt-8 lg:mx-10'>
+            {profile !== '' && <ProfileUsersPage users={profile} />}
             <div className='lg:flex justify-center items-center'>
               <div className='w-full max-w-2xl '>
                 <b className='block text-gray-700 text-2xl text-center font-bold mb-6'>
@@ -115,7 +123,27 @@ export function SearchHome() {
                     >
                       <div className='flex items-center px-1 pb-1 w-full'>
                         <div className='flex justify-normal items-center w-full'>
-                          {
+                          {user !== null ? (
+                            <button
+                              onClick={() => {
+                                user.email == publication.user
+                                  ? navigate('/account')
+                                  : handleProfileUsers(publication.fullUser)
+                              }}
+                            >
+                              <img
+                                id='fhotoProfile'
+                                className='w-10 h-10 rounded-full'
+                                src={
+                                  publication.fullUser == null ||
+                                  publication.fullUser.urlPhoto == null ||
+                                  publication.fullUser.urlPhoto == ''
+                                    ? `/icons/perfilBlack.png`
+                                    : publication.fullUser.urlPhoto
+                                }
+                              />
+                            </button>
+                          ) : (
                             <img
                               id='fhotoProfile'
                               className='w-10 h-10 rounded-full'
@@ -123,11 +151,11 @@ export function SearchHome() {
                                 publication.fullUser == null ||
                                 publication.fullUser.urlPhoto == null ||
                                 publication.fullUser.urlPhoto == ''
-                                  ? '/icons/perfilBlack.png'
+                                  ? `/icons/perfilBlack.png`
                                   : publication.fullUser.urlPhoto
                               }
                             />
-                          }
+                          )}
                           <label
                             htmlFor='fhotoProfile'
                             className='flex justify-start text-sm px-2'

@@ -56,14 +56,14 @@ export function CreatePost() {
       {
         <section>
           <article>
-            <div className='lg:flex justify-center h-screen items-center bg-slate-200 mt-24'>
+            <div className='lg:flex justify-center h-screen items-center bg-slate-200 mt-24 lg:mt-0'>
               <div className='w-full max-w-2xl'>
                 <form
-                  className='bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4'
+                  className='bg-white shadow-xl rounded px-8 pt-6 pb-4 mt-20'
                   ref={form}
                   onSubmit={handleSubmit}
                 >
-                  <b className='block text-gray-700 text-2xl text-center font-bold mb-6'>
+                  <b className='block text-gray-700 text-2xl text-center font-bold mb-4'>
                     Create Post
                   </b>
                   <div className='grid grid-cols-1 gap-8 xl:grid-cols-2'>

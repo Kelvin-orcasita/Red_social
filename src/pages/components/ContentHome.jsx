@@ -53,7 +53,7 @@ export function ContentHome() {
     }, 1000)
   }
 
-  async function handleProfileUsers(user) {
+  function handleProfileUsers(user) {
     setProfile(user)
   }
 
@@ -78,12 +78,11 @@ export function ContentHome() {
                   <div className='bg-gray-100 rounded-xl md:p-2'>
                     <div className='flex items-center px-1 pb-1 w-full'>
                       <div className='flex justify-normal items-center w-full'>
-                        {
-                          user!==null ?
+                        {user !== null ? (
                           <button
                             onClick={() => {
                               user.email == publication.user
-                                ? navigate('account')
+                                ? navigate('/account')
                                 : handleProfileUsers(publication.fullUser)
                             }}
                           >
@@ -99,19 +98,19 @@ export function ContentHome() {
                               }
                             />
                           </button>
-                          : 
+                        ) : (
                           <img
-                              id='fhotoProfile'
-                              className='w-10 h-10 rounded-full'
-                              src={
-                                publication.fullUser == null ||
-                                publication.fullUser.urlPhoto == null ||
-                                publication.fullUser.urlPhoto == ''
-                                  ? `/icons/perfilBlack.png`
-                                  : publication.fullUser.urlPhoto
-                              }
-                            />
-                        }
+                            id='fhotoProfile'
+                            className='w-10 h-10 rounded-full'
+                            src={
+                              publication.fullUser == null ||
+                              publication.fullUser.urlPhoto == null ||
+                              publication.fullUser.urlPhoto == ''
+                                ? `/icons/perfilBlack.png`
+                                : publication.fullUser.urlPhoto
+                            }
+                          />
+                        )}
                         <label
                           htmlFor='fhotoProfile'
                           className='flex justify-start text-sm px-2'
