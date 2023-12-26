@@ -79,6 +79,7 @@ export function ContentHome() {
                     <div className='flex items-center px-1 pb-1 w-full'>
                       <div className='flex justify-normal items-center w-full'>
                         {
+                          user!==null ?
                           <button
                             onClick={() => {
                               user.email == publication.user
@@ -98,6 +99,18 @@ export function ContentHome() {
                               }
                             />
                           </button>
+                          : 
+                          <img
+                              id='fhotoProfile'
+                              className='w-10 h-10 rounded-full'
+                              src={
+                                publication.fullUser == null ||
+                                publication.fullUser.urlPhoto == null ||
+                                publication.fullUser.urlPhoto == ''
+                                  ? `/icons/perfilBlack.png`
+                                  : publication.fullUser.urlPhoto
+                              }
+                            />
                         }
                         <label
                           htmlFor='fhotoProfile'
