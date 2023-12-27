@@ -62,11 +62,11 @@ export function ContentHome() {
       <Navbar />
 
       {publications == '' ? (
-        <div className='mt-48 lg:mt-56 flex items-center justify-center'>
+        <div className='mt-48 flex items-center justify-center'>
           <Loading />
         </div>
       ) : (
-        <section className='mt-24 lg:mt-14'>
+        <section className='mt-24 lg:mt-20'>
           <div className='container lg:px-6 mx-auto'>
             {profile !== '' && <ProfileUsersPage users={profile} />}
             <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-2'>
