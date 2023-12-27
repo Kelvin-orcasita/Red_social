@@ -62,7 +62,7 @@ export function ContentHome() {
       <Navbar />
 
       {publications == '' ? (
-        <div className='mt-48 lg:52 flex items-center justify-center'>
+        <div className='mt-48 lg:60 flex items-center justify-center'>
           <Loading />
         </div>
       ) : (
