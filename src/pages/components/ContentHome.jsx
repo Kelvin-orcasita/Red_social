@@ -73,7 +73,7 @@ export function ContentHome() {
               {publications.map((publication) => (
                 <div
                   key={publication.id}
-                  className='flex flex-col items-start lg:p-2 snap-start'
+                  className='flex flex-col items-start lg:p-2'
                 >
                   <div className='bg-gray-100 rounded-xl md:p-2'>
                     <div className='flex items-center px-1 pb-1 w-full'>
